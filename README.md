@@ -1,8 +1,6 @@
 # CAMLBuilder
 Small and simple API which allows you to easily write CAML queries, in a declarative way.
 
-[![Build Status](https://travis-ci.org/joaope/CAMLBuilder.svg?branch=master)](https://travis-ci.org/joaope/CAMLBuilder) [![Analytics](https://ga-beacon.appspot.com/UA-55655362-2/joaope/camlbuilder/readme.md)](https://github.com/joaope/camlbuilder)
-
 ## Example:
 
 ```C#
@@ -64,3 +62,5 @@ var queryCaml =
    </Where>
 </Query>
 ```
+
+[![Build Status](https://travis-ci.org/joaope/CAMLBuilder.svg?branch=master)](https://travis-ci.org/joaope/CAMLBuilder) [![Analytics](https://ga-beacon.appspot.com/UA-55655362-2/joaope/camlbuilder/readme.md)](https://github.com/joaope/camlbuilder)
