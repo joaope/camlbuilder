@@ -6,15 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAMLBuilderTestApp", "CAMLBuilderTestApp\CAMLBuilderTestApp.csproj", "{91139039-5A0D-4F27-8F43-86CDD31F44CE}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = CAMLBuilder\\CAMLBuilder.csproj
-		SccProjectName1 = CAMLBuilder
-		SccLocalPath1 = CAMLBuilder
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		3.5|Any CPU = 3.5|Any CPU
 		3.5|Mixed Platforms = 3.5|Mixed Platforms
