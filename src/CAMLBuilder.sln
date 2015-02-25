@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAMLBuilder", "CAMLBuilder\CAMLBuilder.csproj", "{7A4FE925-88E9-4820-82F8-42DFADF2694E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAMLBuilderTestApp", "CAMLBuilderTestApp\CAMLBuilderTestApp.csproj", "{91139039-5A0D-4F27-8F43-86CDD31F44CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,26 +41,6 @@ Global
 		{7A4FE925-88E9-4820-82F8-42DFADF2694E}.4.0-Debug|Mixed Platforms.ActiveCfg = 4.0-Debug|Any CPU
 		{7A4FE925-88E9-4820-82F8-42DFADF2694E}.4.0-Debug|Mixed Platforms.Build.0 = 4.0-Debug|Any CPU
 		{7A4FE925-88E9-4820-82F8-42DFADF2694E}.4.0-Debug|x86.ActiveCfg = 4.0-Debug|Any CPU
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5|Any CPU.ActiveCfg = 3.5|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5|Mixed Platforms.ActiveCfg = 3.5|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5|Mixed Platforms.Build.0 = 3.5|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5|x86.ActiveCfg = 3.5|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5|x86.Build.0 = 3.5|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5-Debug|Any CPU.ActiveCfg = 3.5-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5-Debug|Mixed Platforms.ActiveCfg = 3.5-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5-Debug|Mixed Platforms.Build.0 = 3.5-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5-Debug|x86.ActiveCfg = 3.5-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.3.5-Debug|x86.Build.0 = 3.5-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0|Any CPU.ActiveCfg = 4.0|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0|Mixed Platforms.ActiveCfg = 4.0|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0|Mixed Platforms.Build.0 = 4.0|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0|x86.ActiveCfg = 4.0|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0|x86.Build.0 = 4.0|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0-Debug|Any CPU.ActiveCfg = 4.0-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0-Debug|Mixed Platforms.ActiveCfg = 4.0-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0-Debug|Mixed Platforms.Build.0 = 4.0-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0-Debug|x86.ActiveCfg = 4.0-Debug|x86
-		{91139039-5A0D-4F27-8F43-86CDD31F44CE}.4.0-Debug|x86.Build.0 = 4.0-Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
