@@ -1,6 +1,8 @@
 properties {
     $global:configuration = 'Debug'
-    $bin_folder = 'CAMLBuilder\bin'
+    
+    $source_folder = "src"
+    $output_folder = "bin"
 }
 
 task default -depends compile
@@ -15,7 +17,7 @@ task clean {
 }
 
 task compile -depends clean {
-    exec { msbuild /t:Clean /t:Build /nologo /p:Configuration=$configuration "CAMLBuilder.sln" }
+    exec { msbuild /t:Clean /t:Build /nologo /p:Configuration=$configuration $source_folder\CAMLBuilder.sln }
 }
 
 task test -depends compile { 
