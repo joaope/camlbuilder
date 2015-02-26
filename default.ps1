@@ -1,5 +1,5 @@
 properties {
-    $global:configuration = 'Debug'
+    $global:configuration = "Debug"
     
     $source_folder = "src"
     $output_folder = "bin"
