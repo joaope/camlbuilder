@@ -82,8 +82,8 @@ namespace CamlBuilder
 <Where>
     {0}
     {1}
-    {2}
-</Where>",
+</Where> 
+    {2}",
          Statement.GetCAML() ?? string.Empty,
          GetGroupByCAML(),
          GetOrderByCAML());
