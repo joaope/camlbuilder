@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (C) 2012 by João Pedro Correia (http://camlbuilder.codeplex.com/)
+// Copyright (C) 2012 by João Pedro Correia (https://github.com/joaope/camlbuilder)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@ namespace CamlBuilder
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.
@@ -35,9 +36,10 @@ namespace CamlBuilder
             get
             {
                 return typeof(CamlOperatorType)
-                    .GetMember(OperatorType.ToString())
-                    .First()
-                    .GetCustomAttributes(typeof(CamlTextAttribute), false)
+                    .GetTypeInfo()
+                    .DeclaredMembers
+                    .Single(m => m.Name == OperatorType.ToString())
+                    .CustomAttributes
                     .Cast<CamlTextAttribute>()
                     .First()
                     .StringValue;

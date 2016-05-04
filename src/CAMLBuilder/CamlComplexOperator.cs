@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (C) 2012 by João Pedro Correia (http://camlbuilder.codeplex.com/)
+// Copyright (C) 2012 by João Pedro Correia (https://github.com/joaope/camlbuilder)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +24,9 @@ namespace CamlBuilder
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using System.Linq;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     internal class CamlComplexOperator : CamlOperator
     {
         private string FieldTypeString
@@ -36,9 +34,10 @@ namespace CamlBuilder
             get
             {
                 return typeof(CamlFieldType)
-                    .GetMember(FieldType.ToString())
-                    .First()
-                    .GetCustomAttributes(typeof(CamlTextAttribute), false)
+                    .GetTypeInfo()
+                    .DeclaredMembers
+                    .Single(m => m.Name == FieldType.ToString())
+                    .CustomAttributes
                     .Cast<CamlTextAttribute>()
                     .First()
                     .StringValue;
