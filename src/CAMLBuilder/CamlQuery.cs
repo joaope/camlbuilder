@@ -61,8 +61,7 @@
     {Statement.GetCaml() ?? string.Empty}
     {GetGroupByCaml()}
 </Where> 
-    {GetOrderByCaml
-                    ()}";
+{GetOrderByCaml()}";
         }
 
         /// <summary>
