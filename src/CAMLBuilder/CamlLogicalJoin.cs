@@ -52,17 +52,12 @@ namespace CamlBuilder
         /// </summary>
         public CamlLogicalJoinType LogicalJoinType { get; private set; }
 
-        private List<CamlStatement> statements;
+        private readonly List<CamlStatement> internalStatements;
 
         private CamlLogicalJoin(CamlLogicalJoinType logicalJoinType, IEnumerable<CamlStatement> statements)
         {
             LogicalJoinType = logicalJoinType;
-            this.statements = statements.ToList();
-        }
-
-        private CamlLogicalJoin(CamlLogicalJoinType logicalJoinType)
-            : this(logicalJoinType, new CamlStatement[] {})
-        {
+            internalStatements = statements.ToList();
         }
 
         /// <summary>
@@ -71,7 +66,7 @@ namespace CamlBuilder
         /// <param name="statement">Statement to be added.</param>
         public void AddStatement(CamlStatement statement)
         {
-            statements.Add(statement);
+            internalStatements.Add(statement);
         }
 
         /// <summary>
@@ -80,7 +75,7 @@ namespace CamlBuilder
         /// <param name="statements">Statements to be added to logical join.</param>
         public void AddStatements(IEnumerable<CamlStatement> statements)
         {
-            this.statements.AddRange(statements);
+            internalStatements.AddRange(statements);
         }
 
         /// <summary>
@@ -88,19 +83,19 @@ namespace CamlBuilder
         /// logical join statement.
         /// </summary>
         /// <returns>CAML string.</returns>
-        public override string GetCAML()
+        public override string GetCaml()
         {
-            if (statements.Count == 0)
+            if (internalStatements.Count == 0)
             {
                 return string.Empty;
             }
 
-            if (statements.Count == 1)
+            if (internalStatements.Count == 1)
             {
-                return statements[0].GetCAML();
+                return internalStatements[0].GetCaml();
             }
 
-            var queue = new Queue<CamlStatement>(statements);
+            var queue = new Queue<CamlStatement>(internalStatements);
 
             return BuildCamlRecursively(queue);
         }
@@ -116,8 +111,8 @@ namespace CamlBuilder
 </{0}>
 ",
  LogicalJoinTypeString,
- statementsQueue.Dequeue().GetCAML(),
- statementsQueue.Dequeue().GetCAML());
+ statementsQueue.Dequeue().GetCaml(),
+ statementsQueue.Dequeue().GetCaml());
 
             }
             else
@@ -129,7 +124,7 @@ namespace CamlBuilder
 </{0}>
 ",
 LogicalJoinTypeString,
-statementsQueue.Dequeue().GetCAML(),
+statementsQueue.Dequeue().GetCaml(),
 BuildCamlRecursively(statementsQueue));
             }
         }

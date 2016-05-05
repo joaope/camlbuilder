@@ -29,15 +29,10 @@ namespace CamlBuilder
         {
         }
 
-        public override string GetCAML()
-        {
-            return string.Format(@"
-<{0}>
-    <FieldRef Name='{1}' />
-</{0}>
-",
- OperatorTypeString,
- FieldName);
-        }
+        public override string GetCaml() => $@"
+<{OperatorTypeString}>
+    <FieldRef Name='{FieldName}' />
+</{OperatorTypeString}>
+";
     }
 }

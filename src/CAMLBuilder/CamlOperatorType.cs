@@ -30,57 +30,67 @@ namespace CamlBuilder
         /// <summary>
         /// Indicates an Equal operator
         /// </summary>
-        [CamlTextAttribute("Eq")]
+        [CamlText("Eq")]
         Equal,
+
         /// <summary>
         /// Indicates a NotEqual operator
         /// </summary>
-        [CamlTextAttribute("Neq")]
+        [CamlText("Neq")]
         NotEqual,
+
         /// <summary>
         /// Indicates a GreaterThan operator
         /// </summary>
-        [CamlTextAttribute("Gt")]
+        [CamlText("Gt")]
         GreaterThan,
+
         /// <summary>
         /// Indicates a GreaterThanOrEqualTo operator
         /// </summary>
-        [CamlTextAttribute("Geq")]
+        [CamlText("Geq")]
         GreaterThanOrEqualTo,
+
         /// <summary>
         /// Indicates a LowerThan operator
         /// </summary>
-        [CamlTextAttribute("Lt")]
+        [CamlText("Lt")]
         LowerThan,
+
         /// <summary>
         /// Indicates a LowerThanOrEqualTo operator
         /// </summary>
-        [CamlTextAttribute("Leq")]
+        [CamlText("Leq")]
         LowerThanOrEqualTo,
+
         /// <summary>
         /// Indicates an IsNull operator
         /// </summary>
-        [CamlTextAttribute("IsNull")]
+        [CamlText("IsNull")]
         IsNull,
+
         /// <summary>
         /// Indicates an IsNotNull operator
         /// </summary>
-        [CamlTextAttribute("IsNotNull")]
+        [CamlText("IsNotNull")]
         IsNotNull,
+
         /// <summary>
         /// Indicates a BeginsWith operator
         /// </summary>
-        [CamlTextAttribute("BeginsWith")]
+        [CamlText("BeginsWith")]
         BeginsWith,
+
         /// <summary>
         /// Indicates a Contains operator
         /// </summary>
-        [CamlTextAttribute("Contains")]
+        [CamlText("Contains")]
         Contains,
+
         /// <summary>
         /// Indicates a DateRangesOverlap operator
         /// </summary>
-        [CamlTextAttribute("DateRangesOverlap")]
+        [CamlText("DateRangesOverlap")]
         DateRangesOverlap
     }
 }

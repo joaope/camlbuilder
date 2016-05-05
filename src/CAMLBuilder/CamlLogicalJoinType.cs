@@ -30,12 +30,12 @@ namespace CamlBuilder
         /// <summary>
         /// Indicates an Or logical join.
         /// </summary>
-        [CamlTextAttribute("Or")]
+        [CamlText("Or")]
         Or,
         /// <summary>
         /// Indicates an And logical join.
         /// </summary>
-        [CamlTextAttribute("And")]
+        [CamlText("And")]
         And
     }
 }

@@ -22,14 +22,11 @@
 
 namespace CamlBuilder
 {
-    using System.Collections.Generic;
-    using System.Text;
-
     /// <summary>
     /// Defines a CAML statement. It can be a <see cref="CamlLogicalJoin"/> or a <see cref="CamlOperator"/>. 
     /// </summary>
     public abstract class CamlStatement
     {
-        public abstract string GetCAML();
+        public abstract string GetCaml();
     }
 }

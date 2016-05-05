@@ -24,9 +24,9 @@ namespace CamlBuilder
 {
     internal class CamlOrderByField
     {
-        public string FieldName { get; private set; }
+        public string FieldName { get; }
 
-        public CamlOrderByFieldOrder Order { get; private set; }
+        public CamlOrderByFieldOrder Order { get; }
 
         public CamlOrderByField(string fieldName)
             : this(fieldName, CamlOrderByFieldOrder.Ascending)
@@ -39,12 +39,9 @@ namespace CamlBuilder
             Order = order;
         }
 
-        public string GetCAML()
+        public string GetCaml()
         {
-            return string.Format(
-                "<FieldRef Name='{0}'{1} />",
-                FieldName,
-                Order == CamlOrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'");
+            return $"<FieldRef Name='{FieldName}'{(Order == CamlOrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'")} />";
         }
     }
 }

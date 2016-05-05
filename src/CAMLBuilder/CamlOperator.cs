@@ -83,7 +83,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>Equal</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>Equal</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -95,7 +95,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>Equal</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>Equal</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -108,7 +108,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>NotEqual</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>NotEqual</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -120,7 +120,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>NotEqual</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>NotEqual</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -133,7 +133,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>BeginsWith</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>BeginsWith</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -145,7 +145,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>BeginsWith</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>BeginsWith</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -158,7 +158,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>Contains</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>Contains</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -170,7 +170,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>Contains</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>Contains</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -183,7 +183,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>DateRangesOverlap</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>DateRangesOverlap</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -195,7 +195,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>DateRangesOverlap</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>DateRangesOverlap</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -208,7 +208,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>GreaterThan</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>GreaterThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -220,7 +220,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>GreaterThan</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>GreaterThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -233,7 +233,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>GreaterThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>GreaterThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -245,7 +245,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>GreaterThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>GreaterThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -258,7 +258,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>LowerThan</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>LowerThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -270,7 +270,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>LowerThan</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>LowerThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -283,7 +283,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>LowerThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>LowerThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>
@@ -295,7 +295,7 @@ namespace CamlBuilder
         }
 
         /// <summary>
-        /// Instanciates a new <i>LowerThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldname"/>.
+        /// Instanciates a new <i>LowerThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="fieldType">Field type</param>

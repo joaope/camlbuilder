@@ -114,19 +114,15 @@ namespace CamlBuilder
             otherAttributes.Remove(name);
         }
 
-        public override string GetCAML()
+        public override string GetCaml()
         {
-            return string.Format(@"
-<{0}>
-    <FieldRef Name='{1}'{4} />
-    <Value Type='{2}'>{3}</Value>
-</{0}>
-",
- OperatorTypeString,
- FieldName,
- FieldTypeString,
- Value.ToString(),
- GetFormattedOtherAttributes());
+            return
+                $@"
+<{OperatorTypeString}>
+    <FieldRef Name='{FieldName}'{GetFormattedOtherAttributes()} />
+    <Value Type='{FieldTypeString}'>{Value}</Value>
+</{OperatorTypeString}>
+";
         }
 
         private string GetFormattedOtherAttributes()

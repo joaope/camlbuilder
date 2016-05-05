@@ -24,7 +24,7 @@ namespace CamlBuilder
 {
     using System;
 
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field)]
     internal class CamlTextAttribute : Attribute
     {
         public string StringValue { get; private set; }

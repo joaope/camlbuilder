@@ -34,9 +34,9 @@ namespace CamlBuilder
     /// </summary>
     public class CamlQuery
     {
-        private List<CamlOrderByField> orderByFields = new List<CamlOrderByField>();
+        private readonly List<CamlOrderByField> orderByFields = new List<CamlOrderByField>();
 
-        private List<string> groupByFields = new List<string>();
+        private readonly List<string> groupByFields = new List<string>();
 
         /// <summary>
         /// Gets the statement holded by this query.
@@ -64,12 +64,11 @@ namespace CamlBuilder
         /// <returns>Query CAML string surrounded by Query element.</returns>
         public string GetQueryClause()
         {
-            return string.Format(@"
+            return $@"
 <Query>
-    {0}
+    {GetWhereClause()}
 </Query>
-",
- GetWhereClause());
+";
         }
 
         /// <summary>
@@ -78,15 +77,14 @@ namespace CamlBuilder
         /// <returns>Query CAMl string surrounded by Where element only.</returns>
         public string GetWhereClause()
         {
-            return string.Format(@"
+            return
+                $@"
 <Where>
-    {0}
-    {1}
+    {Statement.GetCaml() ?? string.Empty}
+    {GetGroupByCaml()}
 </Where> 
-    {2}",
-         Statement.GetCAML() ?? string.Empty,
-         GetGroupByCAML(),
-         GetOrderByCAML());
+    {GetOrderByCaml
+                    ()}";
         }
 
         /// <summary>
@@ -114,7 +112,7 @@ namespace CamlBuilder
             return this;
         }
 
-        private string GetOrderByCAML()
+        private string GetOrderByCaml()
         {
             if (orderByFields.Count == 0)
             {
@@ -127,7 +125,7 @@ namespace CamlBuilder
 
             foreach (var orderBy in orderByFields)
             {
-                sb.AppendLine(orderBy.GetCAML());
+                sb.AppendLine(orderBy.GetCaml());
             }
 
             sb.AppendLine("</OrderBy>");
@@ -135,7 +133,7 @@ namespace CamlBuilder
             return sb.ToString();
         }
 
-        private string GetGroupByCAML()
+        private string GetGroupByCaml()
         {
             if (groupByFields.Count == 0)
             {
