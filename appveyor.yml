@@ -1,5 +1,2 @@
-init:
-  - git config --global core.autocrlf true
-
 build_script:
   - cmd: .\psake.bat ci
