@@ -69,6 +69,12 @@
         /// Indicates a DateRangesOverlap operator
         /// </summary>
         [CamlText("DateRangesOverlap")]
-        DateRangesOverlap
+        DateRangesOverlap,
+
+        /// <summary>
+        /// Indicates an Includes operator
+        /// </summary>
+        [CamlText("Includes")]
+        Includes
     }
 }

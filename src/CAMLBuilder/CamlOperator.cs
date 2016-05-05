@@ -284,5 +284,30 @@
         {
             return new CamlComplexOperator(CamlOperatorType.LowerThanOrEqualTo, fieldName, fieldType, value, otherAttributes);
         }
+
+        /// <summary>
+        /// Instanciates a new <i>Includes</i> operator which will perform on specified <paramref name="fieldName"/>.
+        /// </summary>
+        /// <param name="fieldName">Name of the field to operate on.</param>
+        /// <param name="fieldType">Field type</param>
+        /// <param name="value">Value against which the value returned by the field element is compared to.</param>
+        /// <returns>Includes operator instance.</returns>
+        public static CamlOperator Includes(string fieldName, CamlFieldType fieldType, object value)
+        {
+            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, fieldType, value);
+        }
+
+        /// <summary>
+        /// Instanciates a new <i>Includes</i> operator which will perform on specified <paramref name="fieldName"/>.
+        /// </summary>
+        /// <param name="fieldName">Name of the field to operate on.</param>
+        /// <param name="fieldType">Field type</param>
+        /// <param name="value">Value against which the value returned by the field element is compared to.</param>
+        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
+        /// <returns>Includes operator instance.</returns>
+        public static CamlOperator Includes(string fieldName, CamlFieldType fieldType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        {
+            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, fieldType, value, otherAttributes);
+        }
     }
 }
