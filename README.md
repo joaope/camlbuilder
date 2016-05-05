@@ -2,6 +2,7 @@
 Small and simple API which allows you to easily write CAML queries, in a declarative way.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1a5mcdp2ysrjor42/branch/master?svg=true)](https://ci.appveyor.com/project/joaope/camlbuilder/branch/dnx)
+[![Analytics](https://ga-beacon.appspot.com/UA-55655362-2/joaope/camlbuilder/readme.md)](https://github.com/joaope/camlbuilder)
 
 ## Example:
 
@@ -64,5 +65,3 @@ var queryCaml =
    </Where>
 </Query>
 ```
-
-[![Analytics](https://ga-beacon.appspot.com/UA-55655362-2/joaope/camlbuilder/readme.md)](https://github.com/joaope/camlbuilder)
