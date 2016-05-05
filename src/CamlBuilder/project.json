@@ -36,7 +36,7 @@
     "dotnet5.4": {
       "dependencies": {
         "System.Linq": "4.0.0",
-        "System.Reflection": "4.0.10" 
+        "System.Reflection": "4.0.10"
       }
     }
   }
