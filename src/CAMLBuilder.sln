@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{B2EF9525-68C9-4FE1-8614-F2D4D41CBFAC}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		..\appveyor.yml = ..\appveyor.yml
 		..\default.ps1 = ..\default.ps1
 		..\global.json = ..\global.json
 		..\psake.bat = ..\psake.bat

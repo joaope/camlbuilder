@@ -14,11 +14,15 @@ task clean {
 }
 
 task compile -depends clean {
+	exec { dnu restore }
     exec { dnu build $source_folder\CamlBuilder\project.json --configuration $configuration --out $output_folder }
 }
 
 task test -depends clean, compile { 
     'Run tests!'
+}
+
+task ci -depends test {
 }
 
 task pack -depends test {
