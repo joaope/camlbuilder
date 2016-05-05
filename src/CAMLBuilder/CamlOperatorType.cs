@@ -75,6 +75,12 @@
         /// Indicates an Includes operator
         /// </summary>
         [CamlText("Includes")]
-        Includes
+        Includes,
+
+        /// <summary>
+        /// Indicates an NotIncludes operator
+        /// </summary>
+        [CamlText("NotIncludes")]
+        NotIncludes
     }
 }
