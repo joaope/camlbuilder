@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (C) 2012 by João Pedro Correia (http://camlbuilder.codeplex.com/)
+// Copyright (C) 2012 by João Pedro Correia (https://github.com/joaope/camlbuilder)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,7 @@ namespace CamlBuilder
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// Defines a CAML logical join. This class has no constructors available. To instanciate a
@@ -36,9 +37,10 @@ namespace CamlBuilder
             get
             {
                 return typeof(CamlLogicalJoinType)
-                    .GetMember(LogicalJoinType.ToString())
-                    .First()
-                    .GetCustomAttributes(typeof(CamlTextAttribute), false)
+                    .GetTypeInfo()
+                    .DeclaredMembers
+                    .Single(m => m.Name == LogicalJoinType.ToString())
+                    .CustomAttributes
                     .Cast<CamlTextAttribute>()
                     .First()
                     .StringValue;

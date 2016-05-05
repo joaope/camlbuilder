@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (C) 2012 by João Pedro Correia (http://camlbuilder.codeplex.com/)
+// Copyright (C) 2012 by João Pedro Correia (https://github.com/joaope/camlbuilder)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

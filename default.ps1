@@ -1,33 +1,31 @@
 properties {
-    $global:configuration = "Debug"
+    $global:configuration = "debug"
     
-    $source_folder = "src"
-    $output_folder = "bin"
+	$base_folder = Resolve-Path .
+    $source_folder = "$base_folder\src"
+    $output_folder = "$base_folder\out"
 }
 
 task default -depends compile
-task debug -depends default
-task release -depends set_release, default
-task dist -depends release {
-    'Do the nuget thing!'
-}
 
 task clean {
-    'Clean!'
+    rd "$source_folder\artifacts" -recurse -force  -ErrorAction SilentlyContinue | out-null
+	rd "$output_folder" -recurse -force  -ErrorAction SilentlyContinue | out-null
 }
 
 task compile -depends clean {
-    exec { msbuild /t:Clean /t:Build /nologo /p:Configuration=$configuration $source_folder\CAMLBuilder.sln }
+	exec { dnu restore }
+    exec { dnu build $source_folder\CamlBuilder\project.json --configuration $configuration --out $output_folder }
 }
 
-task test -depends compile { 
+task test -depends clean, compile { 
     'Run tests!'
 }
 
-task set_release {
-    $global:configuration = 'Release'
+task ci -depends test {
 }
 
-task ? {
-    Write-Documentation
+task pack -depends test {
+	$global:configuration = 'Release'
+	exec { dnu pack $source_folder\CamlBuilder\project.json --configuration $configuration --out $output_folder }
 }
