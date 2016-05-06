@@ -18,7 +18,7 @@ configuration:
   - release
 
 build_script:
-  - dnu build src\CamlBuilder\project.json --configuration $(configuration) --out out_bin
+  - dnu pack src\CamlBuilder\project.json --configuration $(configuration) --out out_bin
   - dnu build src\CamlBuilder.UnitTests\project.json --configuration $(configuration) --out out_tests
 
 
@@ -28,3 +28,11 @@ build_script:
 
 test_script:
   - dnx --project src\CamlBuilder.UnitTests\project.json run-tests
+
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+  - path: out_bin\$(configuration)\*.nupkg
