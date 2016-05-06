@@ -36,3 +36,4 @@ test_script:
 
 artifacts:
   - path: out_bin\%configuration%\*.nupkg
+    name: nuget_package
