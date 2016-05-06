@@ -16,7 +16,7 @@ configuration:
 
 build:
   parallel: true
-  project: CamlBuilder.sln
+  project: src\CamlBuilder.sln
 
 
 #---------------------------------#
