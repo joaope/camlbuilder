@@ -20,7 +20,6 @@ configuration:
 build_script:
   - dnu pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
   - dnu build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
-  - dir out_bin\%configuration%
 
 
 #---------------------------------#
@@ -36,5 +35,5 @@ test_script:
 #---------------------------------#
 
 artifacts:
-  - path: out_bin\debug\*.nupkg
+  - path: out_bin\$(configuration)\*.nupkg
     name: nuget_package
