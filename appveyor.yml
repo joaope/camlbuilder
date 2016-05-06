@@ -10,6 +10,9 @@ init:
 #       build configuration       #
 #---------------------------------#
 
+before_build:
+  - dnu restore
+
 configuration:
   - debug
   - release
