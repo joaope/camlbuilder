@@ -19,7 +19,7 @@ configuration:
 
 build_script:
   - dnu build src\CamlBuilder\project.json --configuration $(configuration) --out out_bin
-  - dnu build src\CamlBuilder.UnitTests\project.json --confguration $(configuration) --out out_tests
+  - dnu build src\CamlBuilder.UnitTests\project.json --configuration $(configuration) --out out_tests
 
 
 #---------------------------------#
@@ -27,4 +27,4 @@ build_script:
 #---------------------------------#
 
 test_script:
-  - dnx src\CamlBuilder.UnitTests\project.json run-tests
+  - dnx --project src\CamlBuilder.UnitTests\project.json run-tests
