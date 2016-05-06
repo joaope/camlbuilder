@@ -17,15 +17,14 @@ configuration:
   - debug
   - release
 
-build:
-  parallel: true
-  project: src\CamlBuilder.sln
+build_script:
+  - dnu build src\CamlBuilder\project.json --configuration $(configuration) --out out_bin
+  - dnu build src\CamlBuilder.UnitTests\project.json --confguration $(configuration) --out out_tests
 
 
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
 
-test:
-  assemblies:
-    - CamlBuilder.UnitTests.dll
+test_script:
+  - dnx src\CamlBuilder.UnitTests\project.json run-tests
