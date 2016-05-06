@@ -36,4 +36,18 @@ test_script:
 
 artifacts:
   - path: out_bin\$(configuration)\*.nupkg
-    name: nuget_package
+    name: nuget_packages
+
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+deploy:
+  - provider: NuGet
+    api_key: 
+	  secure: sQplMyrjV8N58rccFtWBFZcsjJy6iHKKP9DbSxRAds10jrfshfM+JorTBMyN8wOs
+    on:
+	  branch: master
+	  appveyor_repo_tag: true
+	  artifact: nuget_packages
