@@ -20,6 +20,7 @@ configuration:
 build_script:
   - dnu pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
   - dnu build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
+  - dir %APPVEYOR_BUILD_FOLDER%\out_bin
 
 
 #---------------------------------#
