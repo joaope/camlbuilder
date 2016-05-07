@@ -5,7 +5,7 @@
   "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
   "projectUrl": "https://github.com/joaope/camlbuilder",
   "summary": "Small and simple API which allows you to easily write CAML queries, in a declarative way.",
-  "description": "CAMLBuilder allows developers to easily write CAML queries without long strings of XML. Strongly-typed and declarative code, queries can be logically constructed.",
+  "description": "CAMLBuilder allows developers to easily write CAML queries without long strings of XML. CAML can be constructed with declarative strongly-typed code.",
   "tags": [ "caml", "declarative", "strongly-typed", "sharepoint", "query", "api" ],
   "requireLicenseAcceptance": false,
   "repository": {
