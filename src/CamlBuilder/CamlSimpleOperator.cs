@@ -9,7 +9,7 @@
 
         public override string GetCaml() => $@"
 <{OperatorTypeString}>
-    <FieldRef Name='{FieldName}' />
+    <FieldRef Name='{FieldName}'/>
 </{OperatorTypeString}>
 ";
     }

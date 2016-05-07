@@ -19,7 +19,7 @@
 
         public string GetCaml()
         {
-            return $"<FieldRef Name='{FieldName}'{(Order == CamlOrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'")} />";
+            return $"<FieldRef Name='{FieldName}'{(Order == CamlOrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'")}/>";
         }
     }
 }

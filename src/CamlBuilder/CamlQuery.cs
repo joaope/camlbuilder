@@ -123,7 +123,7 @@
 
             foreach (var groupBy in groupByFields)
             {
-                sb.AppendFormat("<FieldRef Name='{0}' />", groupBy);
+                sb.AppendFormat("<FieldRef Name='{0}'/>", groupBy);
             }
 
             sb.AppendLine("</GroupBy>");

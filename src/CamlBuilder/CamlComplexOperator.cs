@@ -84,7 +84,7 @@
             return
                 $@"
 <{OperatorTypeString}>
-    <FieldRef Name='{FieldName}'{GetFormattedOtherAttributes()} />
+    <FieldRef Name='{FieldName}'{GetFormattedOtherAttributes()}/>
     <Value Type='{fieldTypeString}'>{Value}</Value>
 </{OperatorTypeString}>
 ";
