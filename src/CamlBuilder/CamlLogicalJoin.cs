@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
 
     /// <summary>
     /// Defines a CAML logical join. This class has no constructors available. To instanciate a
@@ -10,31 +9,19 @@
     /// </summary>
     public class CamlLogicalJoin : CamlStatement
     {
-        private string LogicalJoinTypeString
-        {
-            get
-            {
-                return typeof(CamlLogicalJoinType)
-                    .GetTypeInfo()
-                    .DeclaredMembers
-                    .Single(m => m.Name == LogicalJoinType.ToString())
-                    .CustomAttributes
-                    .Cast<CamlTextAttribute>()
-                    .First()
-                    .StringValue;
-            }
-        }
-
         /// <summary>
         /// Gets the logical join type.
         /// </summary>
-        public CamlLogicalJoinType LogicalJoinType { get; private set; }
+        public CamlLogicalJoinType LogicalJoinType { get; }
 
         private readonly List<CamlStatement> internalStatements;
+
+        private readonly string logicalJoinTypeString;
 
         private CamlLogicalJoin(CamlLogicalJoinType logicalJoinType, IEnumerable<CamlStatement> statements)
         {
             LogicalJoinType = logicalJoinType;
+            logicalJoinTypeString = logicalJoinType.ToString();
             internalStatements = statements.ToList();
         }
 
@@ -87,24 +74,15 @@
     {1}
     {2}
 </{0}>
-",
- LogicalJoinTypeString,
- statementsQueue.Dequeue().GetCaml(),
- statementsQueue.Dequeue().GetCaml());
-
+", logicalJoinTypeString, statementsQueue.Dequeue().GetCaml(), statementsQueue.Dequeue().GetCaml());
             }
-            else
-            {
-                return string.Format(@"
+
+            return string.Format(@"
 <{0}>
     {1}
     {2}
 </{0}>
-",
-LogicalJoinTypeString,
-statementsQueue.Dequeue().GetCaml(),
-BuildCamlRecursively(statementsQueue));
-            }
+", logicalJoinTypeString, statementsQueue.Dequeue().GetCaml(), BuildCamlRecursively(statementsQueue));
         }
 
         /// <summary>

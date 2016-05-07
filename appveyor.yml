@@ -1,47 +1,29 @@
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
-
 init:
   - git config --global core.autocrlf true
 
 
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
-
 before_build:
   - dnu restore
+
 
 configuration:
   - debug
   - release
+
 
 build_script:
   - dnu pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
   - dnu build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
 
 
-#---------------------------------#
-#       tests configuration       #
-#---------------------------------#
-
 test_script:
   - dnx --project src\CamlBuilder.UnitTests\project.json run-tests
 
-
-#---------------------------------#
-#      artifacts configuration    #
-#---------------------------------#
 
 artifacts:
   - path: out_bin\$(configuration)\*.nupkg
     name: nuget_packages
 
-
-#---------------------------------#
-#     deployment configuration    #
-#---------------------------------#
 
 deploy:
   - provider: NuGet

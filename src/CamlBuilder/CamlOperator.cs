@@ -1,28 +1,15 @@
-﻿namespace CamlBuilder
+﻿using System;
+
+namespace CamlBuilder
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
 
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.
     /// </summary>
     public abstract class CamlOperator : CamlStatement
     {
-        internal string OperatorTypeString
-        {
-            get
-            {
-                return typeof(CamlOperatorType)
-                    .GetTypeInfo()
-                    .DeclaredMembers
-                    .Single(m => m.Name == OperatorType.ToString())
-                    .CustomAttributes
-                    .Cast<CamlTextAttribute>()
-                    .First()
-                    .StringValue;
-            }
-        }
+        internal readonly string OperatorTypeString;
 
         /// <summary>
         /// Gets the operator type. 
@@ -38,6 +25,39 @@
         {
             OperatorType = operatorType;
             FieldName = fieldName;
+
+            switch (operatorType)
+            {
+                case CamlOperatorType.Equal:
+                    OperatorTypeString = "Eq";
+                    break;
+                case CamlOperatorType.NotEqual:
+                    OperatorTypeString = "Neq";
+                    break;
+                case CamlOperatorType.GreaterThan:
+                    OperatorTypeString = "Gt";
+                    break;
+                case CamlOperatorType.GreaterThanOrEqualTo:
+                    OperatorTypeString = "Geq";
+                    break;
+                case CamlOperatorType.LowerThan:
+                    OperatorTypeString = "Lt";
+                    break;
+                case CamlOperatorType.LowerThanOrEqualTo:
+                    OperatorTypeString = "Leq";
+                    break;
+                case CamlOperatorType.IsNull:
+                case CamlOperatorType.IsNotNull:
+                case CamlOperatorType.BeginsWith:
+                case CamlOperatorType.Contains:
+                case CamlOperatorType.DateRangesOverlap:
+                case CamlOperatorType.Includes:
+                case CamlOperatorType.NotIncludes:
+                    OperatorTypeString = operatorType.ToString();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operatorType), operatorType, null);
+            }
         }
 
         /// <summary>

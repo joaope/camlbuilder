@@ -2,31 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
-    using System.Linq;
 
     internal class CamlComplexOperator : CamlOperator
     {
-        private string FieldTypeString
-        {
-            get
-            {
-                return typeof(CamlFieldType)
-                    .GetTypeInfo()
-                    .DeclaredMembers
-                    .Single(m => m.Name == FieldType.ToString())
-                    .CustomAttributes
-                    .Cast<CamlTextAttribute>()
-                    .First()
-                    .StringValue;
-            }
-        }
+        private readonly string fieldTypeString;
 
         private readonly Dictionary<string, string> otherAttributes = new Dictionary<string,string>();
 
-        public CamlFieldType FieldType { get; private set; }
+        public CamlFieldType FieldType { get; }
 
-        public object Value { get; private set; }
+        public object Value { get; }
 
         internal CamlComplexOperator(
             CamlOperatorType operatorType, 
@@ -46,6 +31,8 @@
                     this.otherAttributes.Add(pair.Key, pair.Value);
                 }
             }
+
+            fieldTypeString = fieldType.ToString();
         }
 
         internal CamlComplexOperator(
@@ -98,7 +85,7 @@
                 $@"
 <{OperatorTypeString}>
     <FieldRef Name='{FieldName}'{GetFormattedOtherAttributes()} />
-    <Value Type='{FieldTypeString}'>{Value}</Value>
+    <Value Type='{fieldTypeString}'>{Value}</Value>
 </{OperatorTypeString}>
 ";
         }
@@ -115,10 +102,7 @@
 
             foreach (var pair in otherAttributes)
 	        {
-		        attributes[i++] = string.Format(
-                    "{0}='{1}'",
-                    pair.Key,
-                    pair.Value);
+		        attributes[i++] = $"{pair.Key}='{pair.Value}'";
 	        }
 
             return string.Concat(" ", string.Join(" ", attributes));
