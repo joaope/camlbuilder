@@ -50,5 +50,6 @@ deploy:
     on:
       branch: master
       appveyor_repo_tag: true
+	  configuration: release
     skip_symbols: true
     artifact: nuget_packages
