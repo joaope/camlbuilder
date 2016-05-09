@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Text;
+    using Internal;
 
     /// <summary>
     /// Class which represents a CAML query.

@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace CamlBuilder
+﻿namespace CamlBuilder
 {
+    using System;
     using System.Collections.Generic;
+    using Internal;
 
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.

@@ -1,4 +1,4 @@
-﻿namespace CamlBuilder
+﻿namespace CamlBuilder.Internal
 {
     internal class CamlSimpleOperator : CamlOperator
     {

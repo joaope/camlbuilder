@@ -1,4 +1,4 @@
-﻿namespace CamlBuilder
+﻿namespace CamlBuilder.Internal
 {
     using System;
     using System.Collections.Generic;
