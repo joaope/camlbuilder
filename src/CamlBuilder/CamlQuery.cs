@@ -20,7 +20,7 @@
         /// <summary>
         /// Gets the statement holded by this query.
         /// </summary>
-        public CamlStatement Statement { get; private set; }
+        public CamlStatement Statement { get; }
 
         private CamlQuery(CamlStatement statement)
         {
