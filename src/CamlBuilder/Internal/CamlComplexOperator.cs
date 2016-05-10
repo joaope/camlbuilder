@@ -5,23 +5,17 @@
 
     internal class CamlComplexOperator : CamlOperator
     {
-        private readonly string fieldTypeString;
-
         private readonly Dictionary<string, string> otherAttributes = new Dictionary<string,string>();
 
-        public CamlFieldType FieldType { get; }
-
-        public object Value { get; }
-
+        public CamlValue Value { get; }
+        
         internal CamlComplexOperator(
             CamlOperatorType operatorType, 
             string fieldName, 
-            CamlFieldType fieldType, 
-            object value,
+            CamlValue value,
             params KeyValuePair<string,string>[] otherAttributes)
             : base(operatorType, fieldName)
         {
-            FieldType = fieldType;
             Value = value;
 
             if (otherAttributes != null)
@@ -31,16 +25,13 @@
                     this.otherAttributes.Add(pair.Key, pair.Value);
                 }
             }
-
-            fieldTypeString = fieldType.ToString();
         }
 
         internal CamlComplexOperator(
             CamlOperatorType operatorType,
             string fieldName,
-            CamlFieldType fieldType,
-            object value)
-            : this(operatorType, fieldName, fieldType, value, null)
+            CamlValue value)
+            : this(operatorType, fieldName, value, null)
         {
         }
 
@@ -85,7 +76,7 @@
                 $@"
 <{OperatorTypeString}>
     <FieldRef Name='{FieldName}'{GetFormattedOtherAttributes()}/>
-    <Value Type='{fieldTypeString}'>{Value}</Value>
+    {Value.GetCaml()}
 </{OperatorTypeString}>
 ";
         }
