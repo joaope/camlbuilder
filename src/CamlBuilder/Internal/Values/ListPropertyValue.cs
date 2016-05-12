@@ -1,4 +1,4 @@
-﻿namespace CamlBuilder.Internal
+﻿namespace CamlBuilder.Internal.Values
 {
     using System.Collections.Generic;
     using System.Linq;

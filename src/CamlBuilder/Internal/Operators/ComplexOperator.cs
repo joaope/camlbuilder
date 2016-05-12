@@ -1,4 +1,4 @@
-﻿namespace CamlBuilder.Internal
+﻿namespace CamlBuilder.Internal.Operators
 {
     using System;
     using System.Collections.Generic;

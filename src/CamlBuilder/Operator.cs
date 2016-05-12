@@ -2,6 +2,7 @@
 {
     using System;
     using Internal;
+    using Internal.Operators;
 
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.

@@ -1,4 +1,4 @@
-namespace CamlBuilder.Internal
+namespace CamlBuilder.Internal.Values
 {
     internal class NowValue : Value
     {

@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Text;
     using Internal;
+    using Internal.Values;
 
     public abstract class Value
     {
@@ -10,12 +11,12 @@
 
         private readonly bool? includeTimeValue;
 
-        internal Value(ValueType type)
+        protected internal Value(ValueType type)
             : this(type, null)
         {
         }
 
-        internal Value(ValueType type, bool? includeTimeValue)
+        protected internal Value(ValueType type, bool? includeTimeValue)
         {
             this.type = type;
             this.includeTimeValue = includeTimeValue;
