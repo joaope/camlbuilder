@@ -5,20 +5,20 @@
 
     internal class ListPropertyValue : Value
     {
-        private readonly ListPropertyValueItem[] listProperties;
+        private readonly ListPropertyValueItem[] items;
 
         public ListPropertyValue(
             ValueType type, 
             bool? includeTimeValue,
-            IEnumerable<ListPropertyValueItem> listProperties)
+            IEnumerable<ListPropertyValueItem> items)
             : base(type, includeTimeValue)
         {
-            this.listProperties = listProperties.ToArray();
+            this.items = items.ToArray();
         }
 
         internal override string GetCamlValue()
         {
-            return string.Join("\n", listProperties.Select(GetItemElement));
+            return string.Join("\n", items.Select(GetItemElement));
         }
 
         private string GetItemElement(ListPropertyValueItem item)
