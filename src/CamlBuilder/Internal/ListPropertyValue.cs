@@ -29,8 +29,7 @@
                     "Select",
                     item.Select)
             };
-
-
+            
             if (item.AutoHyperLink.HasValue)
             {
                 values.Add(new KeyValuePair<string, string>(
@@ -76,7 +75,7 @@
             if (item.HtmlEncode.HasValue)
             {
                 values.Add(new KeyValuePair<string, string>(
-                    "HtmlEncode",
+                    "HTMLEncode",
                     item.HtmlEncode.Value.ToString().ToUpper()));
             }
 
