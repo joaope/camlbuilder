@@ -7,18 +7,18 @@
     /// Defines a CAML logical join. This class has no constructors available. To instanciate a
     /// new logical join use public static methods.
     /// </summary>
-    public class CamlLogicalJoin : CamlStatement
+    public class LogicalJoin : Statement
     {
         /// <summary>
         /// Gets the logical join type.
         /// </summary>
-        public CamlLogicalJoinType LogicalJoinType { get; }
+        public LogicalJoinType LogicalJoinType { get; }
 
-        private readonly List<CamlStatement> internalStatements;
+        private readonly List<Statement> internalStatements;
 
         private readonly string logicalJoinTypeString;
 
-        private CamlLogicalJoin(CamlLogicalJoinType logicalJoinType, IEnumerable<CamlStatement> statements)
+        private LogicalJoin(LogicalJoinType logicalJoinType, IEnumerable<Statement> statements)
         {
             LogicalJoinType = logicalJoinType;
             logicalJoinTypeString = logicalJoinType.ToString();
@@ -29,7 +29,7 @@
         /// Adds a new statement to this logical join
         /// </summary>
         /// <param name="statement">Statement to be added.</param>
-        public void AddStatement(CamlStatement statement)
+        public void AddStatement(Statement statement)
         {
             internalStatements.Add(statement);
         }
@@ -38,7 +38,7 @@
         /// Adds new statements to this logical join.
         /// </summary>
         /// <param name="statements">Statements to be added to logical join.</param>
-        public void AddStatements(IEnumerable<CamlStatement> statements)
+        public void AddStatements(IEnumerable<Statement> statements)
         {
             internalStatements.AddRange(statements);
         }
@@ -60,12 +60,12 @@
                 return internalStatements[0].GetCaml();
             }
 
-            var queue = new Queue<CamlStatement>(internalStatements);
+            var queue = new Queue<Statement>(internalStatements);
 
             return BuildCamlRecursively(queue);
         }
 
-        private string BuildCamlRecursively(Queue<CamlStatement> statementsQueue)
+        private string BuildCamlRecursively(Queue<Statement> statementsQueue)
         {
             if (statementsQueue.Count == 2)
             {
@@ -90,9 +90,9 @@
         /// </summary>
         /// <param name="statements">And statements.</param>
         /// <returns>And logical join instance.</returns>
-        public static CamlLogicalJoin And(params CamlStatement[] statements)
+        public static LogicalJoin And(params Statement[] statements)
         {
-            return new CamlLogicalJoin(CamlLogicalJoinType.And, statements);
+            return new LogicalJoin(LogicalJoinType.And, statements);
         }
 
         /// <summary>
@@ -100,9 +100,9 @@
         /// </summary>
         /// <param name="statements">And statements.</param>
         /// <returns>And logical join instance.</returns>
-        public static CamlLogicalJoin And(IEnumerable<CamlStatement> statements)
+        public static LogicalJoin And(IEnumerable<Statement> statements)
         {
-            return new CamlLogicalJoin(CamlLogicalJoinType.And, statements);
+            return new LogicalJoin(LogicalJoinType.And, statements);
         }
 
         /// <summary>
@@ -110,9 +110,9 @@
         /// </summary>
         /// <param name="statements">Or statements.</param>
         /// <returns>Or logical join instance.</returns>
-        public static CamlLogicalJoin Or(params CamlStatement[] statements)
+        public static LogicalJoin Or(params Statement[] statements)
         {
-            return new CamlLogicalJoin(CamlLogicalJoinType.Or, statements);
+            return new LogicalJoin(LogicalJoinType.Or, statements);
         }
 
         /// <summary>
@@ -120,9 +120,9 @@
         /// </summary>
         /// <param name="statements">Or statements.</param>
         /// <returns>Or logical join instance.</returns>
-        public static CamlLogicalJoin Or(IEnumerable<CamlStatement> statements)
+        public static LogicalJoin Or(IEnumerable<Statement> statements)
         {
-            return new CamlLogicalJoin(CamlLogicalJoinType.Or, statements);
+            return new LogicalJoin(LogicalJoinType.Or, statements);
         }
     }
 }

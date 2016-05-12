@@ -1,10 +1,10 @@
 namespace CamlBuilder.Internal
 {
-    internal class CamlAnyValue : CamlValue
+    internal class AnyValue : Value
     {
         private readonly object anyValue;
 
-        public CamlAnyValue(CamlValueType type, bool? includeTimeValue, object anyValue)
+        public AnyValue(ValueType type, bool? includeTimeValue, object anyValue)
             : base(type, includeTimeValue)
         {
             this.anyValue = anyValue;

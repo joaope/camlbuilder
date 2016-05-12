@@ -1,8 +1,8 @@
 ﻿namespace CamlBuilder.Internal
 {
-    internal class CamlSimpleOperator : CamlOperator
+    internal class SimpleOperator : Operator
     {
-        internal CamlSimpleOperator(CamlOperatorType operatorType, string fieldName)
+        internal SimpleOperator(OperatorType operatorType, string fieldName)
             : base(operatorType, fieldName)
         {
         }

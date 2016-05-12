@@ -1,15 +1,15 @@
 namespace CamlBuilder.Internal
 {
-    internal class CamlNowValue : CamlValue
+    internal class MonthValue : Value
     {
-        public CamlNowValue(CamlValueType type, bool? includeTimeValue) 
+        public MonthValue(ValueType type, bool? includeTimeValue)
             : base(type, includeTimeValue)
         {
         }
 
         internal override string GetCamlValue()
         {
-            return "<Now/>";
+            return "<Month/>";
         }
     }
 }

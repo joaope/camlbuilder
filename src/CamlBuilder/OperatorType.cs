@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies operator types.
     /// </summary>
-    public enum CamlOperatorType
+    public enum OperatorType
     {
         /// <summary>
         /// Indicates an Equal operator

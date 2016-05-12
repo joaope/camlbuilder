@@ -11,7 +11,7 @@
     /// Defines a CAML query. This class has no constructors available. To instanciate a
     /// new query use public static methods.
     /// </summary>
-    public class CamlQuery
+    public class Query
     {
         private readonly List<CamlOrderByField> orderByFields = new List<CamlOrderByField>();
 
@@ -20,21 +20,21 @@
         /// <summary>
         /// Gets the statement holded by this query.
         /// </summary>
-        public CamlStatement Statement { get; }
+        public Statement Statement { get; }
 
-        private CamlQuery(CamlStatement statement)
+        private Query(Statement statement)
         {
             Statement = statement;
         }
 
         /// <summary>
-        /// Instanciates a new <i>CamlQuery</i> with the specified inner <paramref name="statement"/>
+        /// Instanciates a new <i>Query</i> with the specified inner <paramref name="statement"/>
         /// </summary>
         /// <param name="statement"></param>
         /// <returns></returns>
-        public static CamlQuery BuildQuery(CamlStatement statement)
+        public static Query BuildQuery(Statement statement)
         {
-            return new CamlQuery(statement);
+            return new Query(statement);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
         /// <param name="fieldName">Field name to perform the ordering on.</param>
         /// <param name="order">Order direction.</param>
         /// <returns>Returns the query itself.</returns>
-        public CamlQuery OrderBy(string fieldName, CamlOrderByFieldOrder order)
+        public Query OrderBy(string fieldName, OrderByFieldOrder order)
         {
             orderByFields.Add(new CamlOrderByField(fieldName, order));
             return this;
@@ -84,7 +84,7 @@
         /// </summary>
         /// <param name="fieldName">Field name to group by</param>
         /// <returns>Returns the query itself.</returns>
-        public CamlQuery GroupBy(string fieldName)
+        public Query GroupBy(string fieldName)
         {
             groupByFields.Add(fieldName);
             return this;

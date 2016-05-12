@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies the order of query result.
     /// </summary>
-    public enum CamlOrderByFieldOrder
+    public enum OrderByFieldOrder
     {
         /// <summary>
         /// Defines ascending order.

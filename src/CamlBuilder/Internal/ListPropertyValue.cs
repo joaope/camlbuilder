@@ -3,14 +3,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class CamlListPropertyValue : CamlValue
+    internal class ListPropertyValue : Value
     {
-        private readonly CamlListPropertyValueItem[] listProperties;
+        private readonly ListPropertyValueItem[] listProperties;
 
-        public CamlListPropertyValue(
-            CamlValueType type, 
+        public ListPropertyValue(
+            ValueType type, 
             bool? includeTimeValue,
-            IEnumerable<CamlListPropertyValueItem> listProperties)
+            IEnumerable<ListPropertyValueItem> listProperties)
             : base(type, includeTimeValue)
         {
             this.listProperties = listProperties.ToArray();
@@ -21,7 +21,7 @@
             return string.Join("\n", listProperties.Select(GetItemElement));
         }
 
-        private string GetItemElement(CamlListPropertyValueItem item)
+        private string GetItemElement(ListPropertyValueItem item)
         {
             var values = new List<KeyValuePair<string, string>>
             {

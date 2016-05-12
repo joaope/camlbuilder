@@ -3,16 +3,16 @@
     using System;
     using System.Collections.Generic;
 
-    internal class CamlComplexOperator : CamlOperator
+    internal class ComplexOperator : Operator
     {
         private readonly Dictionary<string, string> otherAttributes = new Dictionary<string,string>();
 
-        public CamlValue Value { get; }
+        public Value Value { get; }
         
-        internal CamlComplexOperator(
-            CamlOperatorType operatorType, 
+        internal ComplexOperator(
+            OperatorType operatorType, 
             string fieldName, 
-            CamlValue value,
+            Value value,
             params KeyValuePair<string,string>[] otherAttributes)
             : base(operatorType, fieldName)
         {
@@ -27,10 +27,10 @@
             }
         }
 
-        internal CamlComplexOperator(
-            CamlOperatorType operatorType,
+        internal ComplexOperator(
+            OperatorType operatorType,
             string fieldName,
-            CamlValue value)
+            Value value)
             : this(operatorType, fieldName, value, null)
         {
         }

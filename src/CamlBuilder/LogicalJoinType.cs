@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies logical join types.
     /// </summary>
-    public enum CamlLogicalJoinType
+    public enum LogicalJoinType
     {
         /// <summary>
         /// Indicates an Or logical join.

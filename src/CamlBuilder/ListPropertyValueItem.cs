@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CamlListPropertyValueItem
+    public class ListPropertyValueItem
     {
         public bool? AutoHyperLink { get; set; }
 
@@ -24,7 +24,7 @@
 
         public bool? UrlEncodeAsUrl { get; set; }
 
-        public CamlListPropertyValueItem(string select)
+        public ListPropertyValueItem(string select)
         {
             if (string.IsNullOrEmpty(select))
             {

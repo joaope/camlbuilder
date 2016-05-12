@@ -1,8 +1,8 @@
 ﻿namespace CamlBuilder.Internal
 {
-    internal class CamlUserIdValue : CamlValue
+    internal class UserIdValue : Value
     {
-        public CamlUserIdValue(CamlValueType type, bool? includeTimeValue)
+        public UserIdValue(ValueType type, bool? includeTimeValue)
             : base(type, includeTimeValue)
         {
         }

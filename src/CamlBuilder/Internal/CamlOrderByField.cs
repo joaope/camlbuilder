@@ -4,14 +4,14 @@
     {
         public string FieldName { get; }
 
-        public CamlOrderByFieldOrder Order { get; }
+        public OrderByFieldOrder Order { get; }
 
         public CamlOrderByField(string fieldName)
-            : this(fieldName, CamlOrderByFieldOrder.Ascending)
+            : this(fieldName, OrderByFieldOrder.Ascending)
         {
         }
 
-        public CamlOrderByField(string fieldName, CamlOrderByFieldOrder order)
+        public CamlOrderByField(string fieldName, OrderByFieldOrder order)
         {
             FieldName = fieldName;
             Order = order;
@@ -19,7 +19,7 @@
 
         public string GetCaml()
         {
-            return $"<FieldRef Name='{FieldName}'{(Order == CamlOrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'")}/>";
+            return $"<FieldRef Name='{FieldName}'{(Order == OrderByFieldOrder.Ascending ? string.Empty : " Ascending='False'")}/>";
         }
     }
 }

@@ -6,52 +6,52 @@
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.
     /// </summary>
-    public abstract class CamlOperator : CamlStatement
+    public abstract class Operator : Statement
     {
         internal readonly string OperatorTypeString;
 
         /// <summary>
         /// Gets the operator type. 
         /// </summary>
-        public CamlOperatorType OperatorType { get; } 
+        public OperatorType OperatorType { get; } 
 
         /// <summary>
         /// Gets the name of the field on which this operator acts on.
         /// </summary>
         public string FieldName { get; private set; }
 
-        protected internal CamlOperator(CamlOperatorType operatorType, string fieldName)
+        protected internal Operator(OperatorType operatorType, string fieldName)
         {
             OperatorType = operatorType;
             FieldName = fieldName;
 
             switch (operatorType)
             {
-                case CamlOperatorType.Equal:
+                case OperatorType.Equal:
                     OperatorTypeString = "Eq";
                     break;
-                case CamlOperatorType.NotEqual:
+                case OperatorType.NotEqual:
                     OperatorTypeString = "Neq";
                     break;
-                case CamlOperatorType.GreaterThan:
+                case OperatorType.GreaterThan:
                     OperatorTypeString = "Gt";
                     break;
-                case CamlOperatorType.GreaterThanOrEqualTo:
+                case OperatorType.GreaterThanOrEqualTo:
                     OperatorTypeString = "Geq";
                     break;
-                case CamlOperatorType.LowerThan:
+                case OperatorType.LowerThan:
                     OperatorTypeString = "Lt";
                     break;
-                case CamlOperatorType.LowerThanOrEqualTo:
+                case OperatorType.LowerThanOrEqualTo:
                     OperatorTypeString = "Leq";
                     break;
-                case CamlOperatorType.IsNull:
-                case CamlOperatorType.IsNotNull:
-                case CamlOperatorType.BeginsWith:
-                case CamlOperatorType.Contains:
-                case CamlOperatorType.DateRangesOverlap:
-                case CamlOperatorType.Includes:
-                case CamlOperatorType.NotIncludes:
+                case OperatorType.IsNull:
+                case OperatorType.IsNotNull:
+                case OperatorType.BeginsWith:
+                case OperatorType.Contains:
+                case OperatorType.DateRangesOverlap:
+                case OperatorType.Includes:
+                case OperatorType.NotIncludes:
                     OperatorTypeString = operatorType.ToString();
                     break;
                 default:
@@ -64,9 +64,9 @@
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <returns>IsNull operator instance.</returns>
-        public static CamlOperator IsNull(string fieldName)
+        public static Operator IsNull(string fieldName)
         {
-            return new CamlSimpleOperator(CamlOperatorType.IsNull, fieldName);
+            return new SimpleOperator(OperatorType.IsNull, fieldName);
         }
 
         /// <summary>
@@ -74,9 +74,9 @@
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <returns>IsNotNull operator instance.</returns>
-        public static CamlOperator IsNotNull(string fieldName)
+        public static Operator IsNotNull(string fieldName)
         {
-            return new CamlSimpleOperator(CamlOperatorType.IsNotNull, fieldName);
+            return new SimpleOperator(OperatorType.IsNotNull, fieldName);
         }
 
         /// <summary>
@@ -86,9 +86,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Equal operator instance.</returns>
-        public static CamlOperator Equal(string fieldName, CamlValueType valueType, object value)
+        public static Operator Equal(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Equal, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.Equal, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -97,9 +97,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Equal operator instance.</returns>
-        public static CamlOperator Equal(string fieldName, CamlValue value)
+        public static Operator Equal(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Equal, fieldName, value);
+            return new ComplexOperator(OperatorType.Equal, fieldName, value);
         }
 
         /// <summary>
@@ -109,9 +109,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotEqual operator instance.</returns>
-        public static CamlOperator NotEqual(string fieldName, CamlValueType valueType, object value)
+        public static Operator NotEqual(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotEqual, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.NotEqual, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -120,9 +120,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotEqual operator instance.</returns>
-        public static CamlOperator NotEqual(string fieldName, CamlValue value)
+        public static Operator NotEqual(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotEqual, fieldName, value);
+            return new ComplexOperator(OperatorType.NotEqual, fieldName, value);
         }
 
         /// <summary>
@@ -132,9 +132,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>BeginsWith operator instance.</returns>
-        public static CamlOperator BeginsWith(string fieldName, CamlValueType valueType, object value)
+        public static Operator BeginsWith(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.BeginsWith, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.BeginsWith, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -143,9 +143,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>BeginsWith operator instance.</returns>
-        public static CamlOperator BeginsWith(string fieldName, CamlValue value)
+        public static Operator BeginsWith(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.BeginsWith, fieldName, value);
+            return new ComplexOperator(OperatorType.BeginsWith, fieldName, value);
         }
 
         /// <summary>
@@ -155,9 +155,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Contains operator instance.</returns>
-        public static CamlOperator Contains(string fieldName, CamlValueType valueType, object value)
+        public static Operator Contains(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Contains, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.Contains, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -166,9 +166,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Contains operator instance.</returns>
-        public static CamlOperator Contains(string fieldName, CamlValue value)
+        public static Operator Contains(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Contains, fieldName, value);
+            return new ComplexOperator(OperatorType.Contains, fieldName, value);
         }
 
         /// <summary>
@@ -178,9 +178,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>DateRangesOverlap operator instance.</returns>
-        public static CamlOperator DateRangesOverlap(string fieldName, CamlValueType valueType, object value)
+        public static Operator DateRangesOverlap(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.DateRangesOverlap, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.DateRangesOverlap, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -189,9 +189,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>DateRangesOverlap operator instance.</returns>
-        public static CamlOperator DateRangesOverlap(string fieldName, CamlValue value)
+        public static Operator DateRangesOverlap(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.DateRangesOverlap, fieldName, value);
+            return new ComplexOperator(OperatorType.DateRangesOverlap, fieldName, value);
         }
 
         /// <summary>
@@ -201,9 +201,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThan operator instance.</returns>
-        public static CamlOperator GreaterThan(string fieldName, CamlValueType valueType, object value)
+        public static Operator GreaterThan(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThan, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.GreaterThan, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -212,9 +212,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThan operator instance.</returns>
-        public static CamlOperator GreaterThan(string fieldName, CamlValue value)
+        public static Operator GreaterThan(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThan, fieldName, value);
+            return new ComplexOperator(OperatorType.GreaterThan, fieldName, value);
         }
 
         /// <summary>
@@ -224,9 +224,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThanOrEqualTo operator instance.</returns>
-        public static CamlOperator GreaterThanOrEqualTo(string fieldName, CamlValueType valueType, object value)
+        public static Operator GreaterThanOrEqualTo(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThanOrEqualTo, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.GreaterThanOrEqualTo, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -235,9 +235,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThanOrEqualTo operator instance.</returns>
-        public static CamlOperator GreaterThanOrEqualTo(string fieldName, CamlValue value)
+        public static Operator GreaterThanOrEqualTo(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThanOrEqualTo, fieldName, value);
+            return new ComplexOperator(OperatorType.GreaterThanOrEqualTo, fieldName, value);
         }
 
         /// <summary>
@@ -247,9 +247,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThan operator instance.</returns>
-        public static CamlOperator LowerThan(string fieldName, CamlValueType valueType, object value)
+        public static Operator LowerThan(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThan, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.LowerThan, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -258,9 +258,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThan operator instance.</returns>
-        public static CamlOperator LowerThan(string fieldName, CamlValue value)
+        public static Operator LowerThan(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThan, fieldName, value);
+            return new ComplexOperator(OperatorType.LowerThan, fieldName, value);
         }
 
         /// <summary>
@@ -270,9 +270,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThanOrEqualTo operator instance.</returns>
-        public static CamlOperator LowerThanOrEqualTo(string fieldName, CamlValueType valueType, object value)
+        public static Operator LowerThanOrEqualTo(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThanOrEqualTo, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.LowerThanOrEqualTo, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -281,9 +281,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThanOrEqualTo operator instance.</returns>
-        public static CamlOperator LowerThanOrEqualTo(string fieldName, CamlValue value)
+        public static Operator LowerThanOrEqualTo(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThanOrEqualTo, fieldName, value);
+            return new ComplexOperator(OperatorType.LowerThanOrEqualTo, fieldName, value);
         }
 
         /// <summary>
@@ -293,9 +293,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Includes operator instance.</returns>
-        public static CamlOperator Includes(string fieldName, CamlValueType valueType, object value)
+        public static Operator Includes(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.Includes, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -304,9 +304,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Includes operator instance.</returns>
-        public static CamlOperator Includes(string fieldName, CamlValue value)
+        public static Operator Includes(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, value);
+            return new ComplexOperator(OperatorType.Includes, fieldName, value);
         }
 
         /// <summary>
@@ -316,9 +316,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotIncludes operator instance.</returns>
-        public static CamlOperator NotIncludes(string fieldName, CamlValueType valueType, object value)
+        public static Operator NotIncludes(string fieldName, ValueType valueType, object value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotIncludes, fieldName, CamlValue.Value(valueType, value));
+            return new ComplexOperator(OperatorType.NotIncludes, fieldName, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -327,9 +327,9 @@
         /// <param name="fieldName">Name of the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotIncludes operator instance.</returns>
-        public static CamlOperator NotIncludes(string fieldName, CamlValue value)
+        public static Operator NotIncludes(string fieldName, Value value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotIncludes, fieldName, value);
+            return new ComplexOperator(OperatorType.NotIncludes, fieldName, value);
         }
     }
 }

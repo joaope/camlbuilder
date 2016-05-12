@@ -8,7 +8,7 @@
         [Fact]
         public void VerifySimpleOperatorIsNullformat()
         {
-            var op = CamlOperator.IsNull("testField");
+            var op = Operator.IsNull("testField");
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(op.GetCaml());
@@ -22,7 +22,7 @@
         [Fact]
         public void VerifySimpleOperatorIsNotNullFormat()
         {
-            var op = CamlOperator.IsNotNull("testField");
+            var op = Operator.IsNotNull("testField");
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(op.GetCaml());
