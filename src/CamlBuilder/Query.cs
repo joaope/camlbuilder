@@ -13,7 +13,7 @@
     /// </summary>
     public class Query
     {
-        private readonly List<CamlOrderByField> orderByFields = new List<CamlOrderByField>();
+        private readonly List<OrderByField> orderByFields = new List<OrderByField>();
 
         private readonly List<string> groupByFields = new List<string>();
 
@@ -74,7 +74,7 @@
         /// <returns>Returns the query itself.</returns>
         public Query OrderBy(string fieldName, OrderByFieldOrder order)
         {
-            orderByFields.Add(new CamlOrderByField(fieldName, order));
+            orderByFields.Add(new OrderByField(fieldName, order));
             return this;
         }
 

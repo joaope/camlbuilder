@@ -1,17 +1,17 @@
 ﻿namespace CamlBuilder.Internal
 {
-    internal class CamlOrderByField
+    internal class OrderByField
     {
         public string FieldName { get; }
 
         public OrderByFieldOrder Order { get; }
 
-        public CamlOrderByField(string fieldName)
+        public OrderByField(string fieldName)
             : this(fieldName, OrderByFieldOrder.Ascending)
         {
         }
 
-        public CamlOrderByField(string fieldName, OrderByFieldOrder order)
+        public OrderByField(string fieldName, OrderByFieldOrder order)
         {
             FieldName = fieldName;
             Order = order;
