@@ -1,7 +1,6 @@
 ﻿namespace CamlBuilder
 {
     using System;
-    using System.Collections.Generic;
     using Internal;
 
     /// <summary>
@@ -96,13 +95,11 @@
         /// Instanciates a new <i>Equal</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>Equal operator instance.</returns>
-        public static CamlOperator Equal(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator Equal(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Equal, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.Equal, fieldName, value);
         }
 
         /// <summary>
@@ -121,13 +118,11 @@
         /// Instanciates a new <i>NotEqual</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>NotEqual operator instance.</returns>
-        public static CamlOperator NotEqual(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator NotEqual(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotEqual, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.NotEqual, fieldName, value);
         }
 
         /// <summary>
@@ -146,13 +141,11 @@
         /// Instanciates a new <i>BeginsWith</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>BeginsWith operator instance.</returns>
-        public static CamlOperator BeginsWith(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator BeginsWith(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.BeginsWith, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.BeginsWith, fieldName, value);
         }
 
         /// <summary>
@@ -171,13 +164,11 @@
         /// Instanciates a new <i>Contains</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>Contains operator instance.</returns>
-        public static CamlOperator Contains(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator Contains(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Contains, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.Contains, fieldName, value);
         }
 
         /// <summary>
@@ -196,13 +187,11 @@
         /// Instanciates a new <i>DateRangesOverlap</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>DateRangesOverlap operator instance.</returns>
-        public static CamlOperator DateRangesOverlap(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator DateRangesOverlap(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.DateRangesOverlap, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.DateRangesOverlap, fieldName, value);
         }
 
         /// <summary>
@@ -221,13 +210,11 @@
         /// Instanciates a new <i>GreaterThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>GreaterThan operator instance.</returns>
-        public static CamlOperator GreaterThan(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator GreaterThan(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThan, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.GreaterThan, fieldName, value);
         }
 
         /// <summary>
@@ -246,13 +233,11 @@
         /// Instanciates a new <i>GreaterThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>GreaterThanOrEqualTo operator instance.</returns>
-        public static CamlOperator GreaterThanOrEqualTo(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator GreaterThanOrEqualTo(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.GreaterThanOrEqualTo, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.GreaterThanOrEqualTo, fieldName, value);
         }
 
         /// <summary>
@@ -271,13 +256,11 @@
         /// Instanciates a new <i>LowerThan</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>LowerThan operator instance.</returns>
-        public static CamlOperator LowerThan(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator LowerThan(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThan, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.LowerThan, fieldName, value);
         }
 
         /// <summary>
@@ -296,13 +279,11 @@
         /// Instanciates a new <i>LowerThanOrEqualTo</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>LowerThanOrEqualTo operator instance.</returns>
-        public static CamlOperator LowerThanOrEqualTo(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator LowerThanOrEqualTo(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.LowerThanOrEqualTo, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.LowerThanOrEqualTo, fieldName, value);
         }
 
         /// <summary>
@@ -321,13 +302,11 @@
         /// Instanciates a new <i>Includes</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>Includes operator instance.</returns>
-        public static CamlOperator Includes(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator Includes(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.Includes, fieldName, value);
         }
 
         /// <summary>
@@ -346,13 +325,11 @@
         /// Instanciates a new <i>NotIncludes</i> operator which will perform on specified <paramref name="fieldName"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field to operate on.</param>
-        /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
-        /// <param name="otherAttributes">Other attributes to be added to FieldRef CAML element.</param>
         /// <returns>NotIncludes operator instance.</returns>
-        public static CamlOperator NotIncludes(string fieldName, CamlValueType valueType, object value, params KeyValuePair<string, string>[] otherAttributes)
+        public static CamlOperator NotIncludes(string fieldName, CamlValue value)
         {
-            return new CamlComplexOperator(CamlOperatorType.NotIncludes, fieldName, CamlValue.Value(valueType, value), otherAttributes);
+            return new CamlComplexOperator(CamlOperatorType.NotIncludes, fieldName, value);
         }
     }
 }
