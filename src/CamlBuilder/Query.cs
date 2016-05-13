@@ -99,10 +99,15 @@
 
         private string GetWhereCaml()
         {
+            if (Statement == null)
+            {
+                return string.Empty;
+            }
+
             return
                 $@"
 <Where>
-    {Statement.GetCaml() ?? string.Empty}
+    {Statement.GetCaml()}
 </Where>";
         }
 
