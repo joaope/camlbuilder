@@ -8,16 +8,16 @@ Small and simple API which allows you to easily write CAML queries, in a declara
 
 ```C#
 var and = 
-    CamlLogicalJoin.And(
-        CamlOperator.Contains("HairColors", CamlFieldType.Text, "brown"),
-        CamlOperator.BeginsWith("Name", CamlFieldType.Text, "John"),
-        CamlOperator.GreaterThanOrEqualTo("Age", CamlFieldType.Integer, 21),
-        CamlLogicalJoin.Or(
-            CamlOperator.IsNotNull("Counter"),
-            CamlOperator.IsNull("Flag")));
+    LogicalJoin.And(
+        Operator.Contains("HairColors", ValueType.Text, "brown"),
+        Operator.BeginsWith("Name", ValueType.Text, "John"),
+        Operator.GreaterThanOrEqualTo("Age", ValueType.Integer, 21),
+        LogicalJoin.Or(
+            Operator.IsNotNull("Counter"),
+            Operator.IsNull("Flag")));
 
 var queryCaml = 
-    CamlQuery.BuildQuery(and)
+    Query.BuildQuery(and)
         .OrderBy("Country")
         .OrderBy(new FieldReference("Age") { Ascending = false })
         .GroupBy("Address")
