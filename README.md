@@ -17,7 +17,7 @@ var and =
             Operator.IsNull("Flag")));
 
 var queryCaml = 
-    Query.BuildQuery(and)
+    Query.Build(and)
         .OrderBy("Country")
         .OrderBy(new FieldReference("Age") { Ascending = false })
         .GroupBy("Address")

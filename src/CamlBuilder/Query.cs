@@ -31,7 +31,7 @@
         /// </summary>
         /// <param name="statement"></param>
         /// <returns></returns>
-        public static Query BuildQuery(Statement statement)
+        public static Query Build(Statement statement)
         {
             return new Query(statement);
         }
