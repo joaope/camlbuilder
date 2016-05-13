@@ -56,12 +56,12 @@ var queryCaml =
          </And>
       </And>
    </Where>
-  <GroupBy>
-     <FieldRef Name='Address' />
-  </GroupBy>
-  <OrderBy>
-     <FieldRef Name='Country' />
-     <FieldRef Name='Age' Ascending='False' />
+   <GroupBy>
+      <FieldRef Name='Address' />
+   </GroupBy>
+   <OrderBy>
+      <FieldRef Name='Country' />
+      <FieldRef Name='Age' Ascending='False' />
    </OrderBy>
 </Query>
 ```
