@@ -17,7 +17,7 @@
         {
             return $@"
 <{OperatorTypeString}>
-    {FieldReference.GetCamlValue()}
+    {FieldReference.GetCaml()}
     {Value.GetCaml()}
 </{OperatorTypeString}>
 ";

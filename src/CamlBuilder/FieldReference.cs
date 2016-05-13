@@ -50,7 +50,7 @@
             return new FieldReference(fieldName);
         } 
 
-        internal string GetCamlValue()
+        internal string GetCaml()
         {
             var values = new List<KeyValuePair<string, string>>();
 

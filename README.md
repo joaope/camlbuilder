@@ -18,8 +18,8 @@ var and =
 
 var queryCaml = 
     CamlQuery.BuildQuery(and)
-        .OrderBy("Country", CamlOrderByFieldOrder.Ascending)
-        .OrderBy("Age", CamlOrderByFieldOrder.Descending)
+        .OrderBy("Country")
+        .OrderBy(new FieldReference("Age") { Ascending = false })
         .GroupBy("Address")
         .GetQueryClause();
 ```

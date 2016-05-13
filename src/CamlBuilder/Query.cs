@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Text;
-    using Internal;
 
     /// <summary>
     /// Class which represents a CAML query.
@@ -13,7 +12,7 @@
     /// </summary>
     public class Query
     {
-        private readonly List<OrderByField> orderByFields = new List<OrderByField>();
+        private readonly List<FieldReference> orderByFields = new List<FieldReference>();
 
         private readonly List<string> groupByFields = new List<string>();
 
@@ -66,15 +65,26 @@
         }
 
         /// <summary>
-        /// Specify the query's order-by options through the specified <paramref name=" fieldName"/>
-        /// and <paramref name="order"/>.
+        /// Adds a new query sort order relatively to a specified <paramref name="fieldRef"/>.
         /// </summary>
-        /// <param name="fieldName">Field name to perform the ordering on.</param>
-        /// <param name="order">Order direction.</param>
+        /// <param name="fieldRef">Reference to the field where to perform the ordering on.</param>
         /// <returns>Returns the query itself.</returns>
-        public Query OrderBy(string fieldName, OrderByFieldOrder order)
+        /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
+        public Query OrderBy(FieldReference fieldRef)
         {
-            orderByFields.Add(new OrderByField(fieldName, order));
+            orderByFields.Add(fieldRef);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a collection of sort orders relatively to specified <paramref name="fieldRefs"/>.
+        /// </summary>
+        /// <param name="fieldRefs">References to the fields where to perform the ordering on.</param>
+        /// <returns>Returns the query itself.</returns>
+        /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
+        public Query OrderBy(IEnumerable<FieldReference> fieldRefs)
+        {
+            orderByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -98,17 +108,13 @@
             }
 
             var sb = new StringBuilder();
+            orderByFields.ForEach(o => sb.AppendLine(o.GetCaml()));
 
-            sb.AppendLine("<OrderBy>");
-
-            foreach (var orderBy in orderByFields)
-            {
-                sb.AppendLine(orderBy.GetCaml());
-            }
-
-            sb.AppendLine("</OrderBy>");
-
-            return sb.ToString();
+            return $@"
+<OrderBy>
+    {sb}
+</OrderBy>
+";
         }
 
         private string GetGroupByCaml()
