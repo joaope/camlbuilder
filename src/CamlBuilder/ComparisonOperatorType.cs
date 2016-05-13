@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies operator types.
     /// </summary>
-    public enum OperatorType
+    public enum ComparisonOperatorType
     {
         /// <summary>
         /// Indicates an Equal operator

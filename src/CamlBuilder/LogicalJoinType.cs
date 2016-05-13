@@ -8,8 +8,8 @@
         /// <summary>
         /// Indicates an Or logical join.
         /// </summary>
-
         Or,
+
         /// <summary>
         /// Indicates an And logical join.
         /// </summary>

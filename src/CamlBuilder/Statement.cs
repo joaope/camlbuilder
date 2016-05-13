@@ -1,7 +1,7 @@
 ﻿namespace CamlBuilder
 {
     /// <summary>
-    /// Defines a CAML statement. It can be a <see cref="LogicalJoin"/> or a <see cref="Operator"/>. 
+    /// Defines a CAML statement. It can be a <see cref="LogicalJoin"/> or a <see cref="ComparisonOperator"/>. 
     /// </summary>
     public abstract class Statement
     {
