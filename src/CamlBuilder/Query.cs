@@ -14,7 +14,7 @@
     {
         private readonly List<FieldReference> orderByFields = new List<FieldReference>();
 
-        private readonly List<string> groupByFields = new List<string>();
+        private readonly List<FieldReference> groupByFields = new List<FieldReference>();
 
         /// <summary>
         /// Gets the statement holded by this query.
@@ -89,14 +89,24 @@
         }
 
         /// <summary>
-        /// Specify the query's group-by options. Query will be grouped by
-        /// the specified <paramref name="fieldName"/>.
+        /// Specify the query's group-by options. Query will be grouped by specified <paramref name="fieldRef"/>.
         /// </summary>
-        /// <param name="fieldName">Field name to group by</param>
+        /// <param name="fieldRef">Reference to the field to group by.</param>
         /// <returns>Returns the query itself.</returns>
-        public Query GroupBy(string fieldName)
+        public Query GroupBy(FieldReference fieldRef)
         {
-            groupByFields.Add(fieldName);
+            groupByFields.Add(fieldRef);
+            return this;
+        }
+
+        /// <summary>
+        /// Specify the query's group-by options. Query will be grouped by specified <paramref name="fieldRefs"/>.
+        /// </summary>
+        /// <param name="fieldRefs">References to the fields to group by.</param>
+        /// <returns>Returns the query itself.</returns>
+        public Query GroupBy(IEnumerable<FieldReference> fieldRefs)
+        {
+            groupByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -125,17 +135,13 @@
             }
 
             var sb = new StringBuilder();
+            groupByFields.ForEach(g => sb.AppendLine(g.GetCaml()));
 
-            sb.AppendLine("<GroupBy>");
-
-            foreach (var groupBy in groupByFields)
-            {
-                sb.AppendFormat("<FieldRef Name='{0}'/>", groupBy);
-            }
-
-            sb.AppendLine("</GroupBy>");
-
-            return sb.ToString();
+            return $@"
+<GroupBy>
+    {sb}
+</GroupBy>
+";
         }
     }
 }
