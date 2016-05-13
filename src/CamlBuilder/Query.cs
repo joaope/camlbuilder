@@ -45,6 +45,8 @@
             return $@"
 <Query>
     {GetWhereClause()}
+    {GetGroupByCaml()}
+    {GetOrderByCaml()}
 </Query>
 ";
         }
@@ -59,9 +61,7 @@
                 $@"
 <Where>
     {Statement.GetCaml() ?? string.Empty}
-    {GetGroupByCaml()}
-</Where> 
-{GetOrderByCaml()}";
+</Where>";
         }
 
         /// <summary>
