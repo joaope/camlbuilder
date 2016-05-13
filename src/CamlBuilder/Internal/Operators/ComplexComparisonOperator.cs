@@ -15,8 +15,7 @@
 
         public override string GetCaml()
         {
-            return
-                $@"
+            return $@"
 <{OperatorTypeString}>
     {FieldReference.GetCamlValue()}
     {Value.GetCaml()}

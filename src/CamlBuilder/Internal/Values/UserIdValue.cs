@@ -7,7 +7,7 @@
         {
         }
 
-        internal override string GetCamlValue()
+        protected override string GetCamlValue()
         {
             return "<UserID/>";
         }

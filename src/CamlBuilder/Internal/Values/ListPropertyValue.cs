@@ -16,7 +16,7 @@
             this.items = items.ToArray();
         }
 
-        internal override string GetCamlValue()
+        protected override string GetCamlValue()
         {
             return string.Join("\n", items.Select(GetItemElement));
         }

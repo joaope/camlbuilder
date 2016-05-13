@@ -10,7 +10,7 @@ namespace CamlBuilder.Internal.Values
             this.anyValue = anyValue;
         }
 
-        internal override string GetCamlValue()
+        protected override string GetCamlValue()
         {
             return anyValue.ToString();
         }

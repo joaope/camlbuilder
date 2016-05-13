@@ -1,6 +1,7 @@
 ﻿namespace CamlBuilder
 {
     using System;
+    using System.Collections.Generic;
     using Internal.Operators;
 
     /// <summary>
@@ -332,6 +333,17 @@
         public static ComparisonOperator NotIncludes(FieldReference fieldRef, Value value)
         {
             return new ComplexComparisonOperator(ComparisonOperatorType.NotIncludes, fieldRef, value);
+        }
+
+        /// <summary>
+        /// Instanciates a new <i>In</i> operator which will perform on specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field to operate on.</param>
+        /// <param name="values">Values against which the value returned by the field element is compared to.</param>
+        /// <returns>In operator instance.</returns>
+        public static ComparisonOperator In(FieldReference fieldRef, IEnumerable<Value> values)
+        {
+            return new InComparisonOperator(fieldRef, values);
         }
     }
 }

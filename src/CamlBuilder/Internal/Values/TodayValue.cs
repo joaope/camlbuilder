@@ -15,7 +15,7 @@ namespace CamlBuilder.Internal.Values
         {
         }
 
-        internal override string GetCamlValue()
+        protected override string GetCamlValue()
         {
             return offset.HasValue
                 ? $"<Today Offset='{offset.Value}'/>"

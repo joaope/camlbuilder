@@ -36,7 +36,7 @@
             return sb.ToString();
         }
 
-        internal abstract string GetCamlValue();
+        protected abstract string GetCamlValue();
 
         public static Value Now(ValueType type)
         {

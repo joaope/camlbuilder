@@ -7,7 +7,7 @@ namespace CamlBuilder.Internal.Values
         {
         }
 
-        internal override string GetCamlValue()
+        protected override string GetCamlValue()
         {
             return "<Month/>";
         }

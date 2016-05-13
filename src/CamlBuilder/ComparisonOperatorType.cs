@@ -68,6 +68,11 @@
         /// <summary>
         /// Indicates an NotIncludes operator
         /// </summary>
-        NotIncludes
+        NotIncludes,
+
+        /// <summary>
+        /// Indicates an In operator
+        /// </summary>
+        In
     }
 }
