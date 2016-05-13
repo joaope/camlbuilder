@@ -44,24 +44,11 @@
         {
             return $@"
 <Query>
-    {GetWhereClause()}
+    {GetWhereCaml()}
     {GetGroupByCaml()}
     {GetOrderByCaml()}
 </Query>
 ";
-        }
-
-        /// <summary>
-        /// Returns query's CAML string representation surrounded by Where element only.
-        /// </summary>
-        /// <returns>Query CAMl string surrounded by Where element only.</returns>
-        public string GetWhereClause()
-        {
-            return
-                $@"
-<Where>
-    {Statement.GetCaml() ?? string.Empty}
-</Where>";
         }
 
         /// <summary>
@@ -108,6 +95,15 @@
         {
             groupByFields.AddRange(fieldRefs);
             return this;
+        }
+
+        private string GetWhereCaml()
+        {
+            return
+                $@"
+<Where>
+    {Statement.GetCaml() ?? string.Empty}
+</Where>";
         }
 
         private string GetOrderByCaml()
