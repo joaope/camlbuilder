@@ -21,7 +21,7 @@ var queryCaml =
         .OrderBy("Country")
         .OrderBy(new FieldReference("Age") { Ascending = false })
         .GroupBy("Address")
-        .GetQueryClause();
+        .GetCaml();
 ```
 
 ## Output:

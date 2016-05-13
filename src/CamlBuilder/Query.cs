@@ -40,7 +40,7 @@
         /// Returns query's CAML string representation surrounded by Query element
         /// </summary>
         /// <returns>Query CAML string surrounded by Query element.</returns>
-        public string GetQueryClause()
+        public string GetCaml()
         {
             return $@"
 <Query>
