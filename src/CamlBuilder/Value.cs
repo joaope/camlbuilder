@@ -38,44 +38,44 @@
 
         protected abstract string GetCamlValue();
 
-        public static Value Now(ValueType type)
+        public static Value Now()
         {
-            return new NowValue(type, null);
+            return new NowValue(null);
         }
 
-        public static Value Now(ValueType type, bool? includeTimeValue)
+        public static Value Now(bool includeTimeValue)
         {
-            return new NowValue(type, includeTimeValue);
+            return new NowValue(includeTimeValue);
         }
 
-        public static Value Month(ValueType type)
+        public static Value Month()
         {
-            return new MonthValue(type, null);
+            return new MonthValue(null);
         }
 
-        public static Value Month(ValueType type, bool? includeTimeValue)
+        public static Value Month(bool includeTimeValue)
         {
-            return new MonthValue(type, includeTimeValue);
+            return new MonthValue(includeTimeValue);
         }
 
-        public static Value Today(ValueType type)
+        public static Value Today()
         {
-            return new TodayValue(type, null, null);
+            return new TodayValue(null, null);
         }
 
-        public static Value Today(ValueType type, int? offset)
+        public static Value Today(int offset)
         {
-            return new TodayValue(type, null, offset);
+            return new TodayValue(null, offset);
         }
 
-        public static Value Today(ValueType type, bool? includeTimeValue)
+        public static Value Today(bool includeTimeValue)
         {
-            return new TodayValue(type, includeTimeValue, null);
+            return new TodayValue(includeTimeValue, null);
         }
 
-        public static Value Today(ValueType type, bool? includeTimeValue, int? offset)
+        public static Value Today(bool includeTimeValue, int offset)
         {
-            return new TodayValue(type, includeTimeValue, offset);
+            return new TodayValue(includeTimeValue, offset);
         }
 
         public static Value ObjectValue(ValueType type, object value)
