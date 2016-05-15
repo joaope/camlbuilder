@@ -2,8 +2,8 @@ namespace CamlBuilder.Internal.Values
 {
     internal class NowValue : Value
     {
-        public NowValue(ValueType type, bool? includeTimeValue) 
-            : base(type, includeTimeValue)
+        public NowValue(bool? includeTimeValue) 
+            : base(ValueType.DateTime, includeTimeValue)
         {
         }
 

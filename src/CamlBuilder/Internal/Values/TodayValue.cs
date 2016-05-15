@@ -4,14 +4,14 @@ namespace CamlBuilder.Internal.Values
     {
         private readonly int? offset;
 
-        public TodayValue(ValueType type, bool? includeTimeValue, int? offset)
-            : base(type, includeTimeValue)
+        public TodayValue(bool? includeTimeValue, int? offset)
+            : base(ValueType.DateTime, includeTimeValue)
         {
             this.offset = offset;
         }
 
-        public TodayValue(ValueType type, bool? includeTimeValue)
-            : this(type, includeTimeValue, null)
+        public TodayValue(bool? includeTimeValue)
+            : this(includeTimeValue, null)
         {
         }
 

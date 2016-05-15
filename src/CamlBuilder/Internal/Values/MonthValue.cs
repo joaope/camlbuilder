@@ -2,8 +2,8 @@ namespace CamlBuilder.Internal.Values
 {
     internal class MonthValue : Value
     {
-        public MonthValue(ValueType type, bool? includeTimeValue)
-            : base(type, includeTimeValue)
+        public MonthValue(bool? includeTimeValue)
+            : base(ValueType.DateTime, includeTimeValue)
         {
         }
 
