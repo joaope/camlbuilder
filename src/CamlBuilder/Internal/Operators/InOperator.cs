@@ -19,6 +19,7 @@ namespace CamlBuilder.Internal.Operators
         {
             return $@"
 <{OperatorTypeString}>
+    {FieldReference.GetCaml()}
     <Values>
         {string.Join("\n", Values.Select(v => v.GetCaml()))}
     </Values>
