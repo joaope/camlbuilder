@@ -1,14 +1,14 @@
 ﻿namespace CamlBuilder.Internal.Operators
 {
-    internal class ComplexComparisonOperator : ComparisonOperator
+    internal class ComplexOperator : Operator
     {
         public Value Value { get; }
         
-        internal ComplexComparisonOperator(
-            ComparisonOperatorType comparisonOperatorType, 
+        internal ComplexOperator(
+            OperatorType operatorType, 
             FieldReference fieldRef, 
             Value value)
-            : base(comparisonOperatorType, fieldRef)
+            : base(operatorType, fieldRef)
         {
             Value = value;
         }

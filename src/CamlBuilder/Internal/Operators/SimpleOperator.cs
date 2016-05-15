@@ -1,11 +1,11 @@
 ﻿namespace CamlBuilder.Internal.Operators
 {
-    internal class SimpleComparisonOperator : ComparisonOperator
+    internal class SimpleOperator : Operator
     {
-        internal SimpleComparisonOperator(
-            ComparisonOperatorType comparisonOperatorType, 
+        internal SimpleOperator(
+            OperatorType operatorType, 
             FieldReference fieldRef)
-            : base(comparisonOperatorType, fieldRef)
+            : base(operatorType, fieldRef)
         {
         }
 

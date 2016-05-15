@@ -7,58 +7,58 @@
     /// <summary>
     /// Defines a CAML operator. This is an abstract class. To instanciate an operator use public static methods.
     /// </summary>
-    public abstract class ComparisonOperator : Statement
+    public abstract class Operator : Statement
     {
         internal readonly string OperatorTypeString;
 
         /// <summary>
         /// Gets the operator type. 
         /// </summary>
-        public ComparisonOperatorType OperatorType { get; } 
+        public OperatorType OperatorType { get; } 
 
         /// <summary>
         /// Gets the name of the field on which this operator acts on.
         /// </summary>
         public FieldReference FieldReference { get; private set; }
 
-        protected internal ComparisonOperator(
-            ComparisonOperatorType comparisonOperatorType, 
+        protected internal Operator(
+            OperatorType operatorType, 
             FieldReference fieldRef)
         {
-            OperatorType = comparisonOperatorType;
+            OperatorType = operatorType;
             FieldReference = fieldRef;
 
-            switch (comparisonOperatorType)
+            switch (operatorType)
             {
-                case ComparisonOperatorType.Equal:
+                case OperatorType.Equal:
                     OperatorTypeString = "Eq";
                     break;
-                case ComparisonOperatorType.NotEqual:
+                case OperatorType.NotEqual:
                     OperatorTypeString = "Neq";
                     break;
-                case ComparisonOperatorType.GreaterThan:
+                case OperatorType.GreaterThan:
                     OperatorTypeString = "Gt";
                     break;
-                case ComparisonOperatorType.GreaterThanOrEqualTo:
+                case OperatorType.GreaterThanOrEqualTo:
                     OperatorTypeString = "Geq";
                     break;
-                case ComparisonOperatorType.LowerThan:
+                case OperatorType.LowerThan:
                     OperatorTypeString = "Lt";
                     break;
-                case ComparisonOperatorType.LowerThanOrEqualTo:
+                case OperatorType.LowerThanOrEqualTo:
                     OperatorTypeString = "Leq";
                     break;
-                case ComparisonOperatorType.IsNull:
-                case ComparisonOperatorType.IsNotNull:
-                case ComparisonOperatorType.BeginsWith:
-                case ComparisonOperatorType.Contains:
-                case ComparisonOperatorType.DateRangesOverlap:
-                case ComparisonOperatorType.Includes:
-                case ComparisonOperatorType.NotIncludes:
-                    OperatorTypeString = comparisonOperatorType.ToString();
+                case OperatorType.IsNull:
+                case OperatorType.IsNotNull:
+                case OperatorType.BeginsWith:
+                case OperatorType.Contains:
+                case OperatorType.DateRangesOverlap:
+                case OperatorType.Includes:
+                case OperatorType.NotIncludes:
+                    OperatorTypeString = operatorType.ToString();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(comparisonOperatorType), comparisonOperatorType, null);
+                    throw new ArgumentOutOfRangeException(nameof(operatorType), operatorType, null);
             }
         }
 
@@ -67,9 +67,9 @@
         /// </summary>
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <returns>IsNull operator instance.</returns>
-        public static ComparisonOperator IsNull(FieldReference fieldRef)
+        public static Operator IsNull(FieldReference fieldRef)
         {
-            return new SimpleComparisonOperator(ComparisonOperatorType.IsNull, fieldRef);
+            return new SimpleOperator(OperatorType.IsNull, fieldRef);
         }
 
         /// <summary>
@@ -77,9 +77,9 @@
         /// </summary>
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <returns>IsNotNull operator instance.</returns>
-        public static ComparisonOperator IsNotNull(FieldReference fieldRef)
+        public static Operator IsNotNull(FieldReference fieldRef)
         {
-            return new SimpleComparisonOperator(ComparisonOperatorType.IsNotNull, fieldRef);
+            return new SimpleOperator(OperatorType.IsNotNull, fieldRef);
         }
 
         /// <summary>
@@ -89,9 +89,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Equal operator instance.</returns>
-        public static ComparisonOperator Equal(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator Equal(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Equal, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.Equal, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -100,9 +100,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Equal operator instance.</returns>
-        public static ComparisonOperator Equal(FieldReference fieldRef, Value value)
+        public static Operator Equal(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Equal, fieldRef, value);
+            return new ComplexOperator(OperatorType.Equal, fieldRef, value);
         }
 
         /// <summary>
@@ -112,9 +112,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotEqual operator instance.</returns>
-        public static ComparisonOperator NotEqual(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator NotEqual(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.NotEqual, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.NotEqual, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -123,9 +123,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotEqual operator instance.</returns>
-        public static ComparisonOperator NotEqual(FieldReference fieldRef, Value value)
+        public static Operator NotEqual(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.NotEqual, fieldRef, value);
+            return new ComplexOperator(OperatorType.NotEqual, fieldRef, value);
         }
 
         /// <summary>
@@ -135,9 +135,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>BeginsWith operator instance.</returns>
-        public static ComparisonOperator BeginsWith(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator BeginsWith(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.BeginsWith, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.BeginsWith, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -146,9 +146,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>BeginsWith operator instance.</returns>
-        public static ComparisonOperator BeginsWith(FieldReference fieldRef, Value value)
+        public static Operator BeginsWith(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.BeginsWith, fieldRef, value);
+            return new ComplexOperator(OperatorType.BeginsWith, fieldRef, value);
         }
 
         /// <summary>
@@ -158,9 +158,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Contains operator instance.</returns>
-        public static ComparisonOperator Contains(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator Contains(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Contains, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.Contains, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -169,9 +169,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Contains operator instance.</returns>
-        public static ComparisonOperator Contains(FieldReference fieldRef, Value value)
+        public static Operator Contains(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Contains, fieldRef, value);
+            return new ComplexOperator(OperatorType.Contains, fieldRef, value);
         }
 
         /// <summary>
@@ -181,9 +181,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>DateRangesOverlap operator instance.</returns>
-        public static ComparisonOperator DateRangesOverlap(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator DateRangesOverlap(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.DateRangesOverlap, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.DateRangesOverlap, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -192,9 +192,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>DateRangesOverlap operator instance.</returns>
-        public static ComparisonOperator DateRangesOverlap(FieldReference fieldRef, Value value)
+        public static Operator DateRangesOverlap(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.DateRangesOverlap, fieldRef, value);
+            return new ComplexOperator(OperatorType.DateRangesOverlap, fieldRef, value);
         }
 
         /// <summary>
@@ -204,9 +204,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThan operator instance.</returns>
-        public static ComparisonOperator GreaterThan(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator GreaterThan(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.GreaterThan, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.GreaterThan, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -215,9 +215,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThan operator instance.</returns>
-        public static ComparisonOperator GreaterThan(FieldReference fieldRef, Value value)
+        public static Operator GreaterThan(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.GreaterThan, fieldRef, value);
+            return new ComplexOperator(OperatorType.GreaterThan, fieldRef, value);
         }
 
         /// <summary>
@@ -227,9 +227,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThanOrEqualTo operator instance.</returns>
-        public static ComparisonOperator GreaterThanOrEqualTo(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator GreaterThanOrEqualTo(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.GreaterThanOrEqualTo, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.GreaterThanOrEqualTo, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -238,9 +238,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>GreaterThanOrEqualTo operator instance.</returns>
-        public static ComparisonOperator GreaterThanOrEqualTo(FieldReference fieldRef, Value value)
+        public static Operator GreaterThanOrEqualTo(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.GreaterThanOrEqualTo, fieldRef, value);
+            return new ComplexOperator(OperatorType.GreaterThanOrEqualTo, fieldRef, value);
         }
 
         /// <summary>
@@ -250,9 +250,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThan operator instance.</returns>
-        public static ComparisonOperator LowerThan(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator LowerThan(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.LowerThan, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.LowerThan, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -261,9 +261,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThan operator instance.</returns>
-        public static ComparisonOperator LowerThan(FieldReference fieldRef, Value value)
+        public static Operator LowerThan(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.LowerThan, fieldRef, value);
+            return new ComplexOperator(OperatorType.LowerThan, fieldRef, value);
         }
 
         /// <summary>
@@ -273,9 +273,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThanOrEqualTo operator instance.</returns>
-        public static ComparisonOperator LowerThanOrEqualTo(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator LowerThanOrEqualTo(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.LowerThanOrEqualTo, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.LowerThanOrEqualTo, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -284,9 +284,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>LowerThanOrEqualTo operator instance.</returns>
-        public static ComparisonOperator LowerThanOrEqualTo(FieldReference fieldRef, Value value)
+        public static Operator LowerThanOrEqualTo(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.LowerThanOrEqualTo, fieldRef, value);
+            return new ComplexOperator(OperatorType.LowerThanOrEqualTo, fieldRef, value);
         }
 
         /// <summary>
@@ -296,9 +296,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Includes operator instance.</returns>
-        public static ComparisonOperator Includes(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator Includes(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Includes, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.Includes, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -307,9 +307,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>Includes operator instance.</returns>
-        public static ComparisonOperator Includes(FieldReference fieldRef, Value value)
+        public static Operator Includes(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.Includes, fieldRef, value);
+            return new ComplexOperator(OperatorType.Includes, fieldRef, value);
         }
 
         /// <summary>
@@ -319,9 +319,9 @@
         /// <param name="valueType">Field type</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotIncludes operator instance.</returns>
-        public static ComparisonOperator NotIncludes(FieldReference fieldRef, ValueType valueType, object value)
+        public static Operator NotIncludes(FieldReference fieldRef, ValueType valueType, object value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.NotIncludes, fieldRef, Value.ObjectValue(valueType, value));
+            return new ComplexOperator(OperatorType.NotIncludes, fieldRef, Value.ObjectValue(valueType, value));
         }
 
         /// <summary>
@@ -330,9 +330,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="value">Value against which the value returned by the field element is compared to.</param>
         /// <returns>NotIncludes operator instance.</returns>
-        public static ComparisonOperator NotIncludes(FieldReference fieldRef, Value value)
+        public static Operator NotIncludes(FieldReference fieldRef, Value value)
         {
-            return new ComplexComparisonOperator(ComparisonOperatorType.NotIncludes, fieldRef, value);
+            return new ComplexOperator(OperatorType.NotIncludes, fieldRef, value);
         }
 
         /// <summary>
@@ -341,9 +341,9 @@
         /// <param name="fieldRef">Reference to the field to operate on.</param>
         /// <param name="values">Values against which the value returned by the field element is compared to.</param>
         /// <returns>In operator instance.</returns>
-        public static ComparisonOperator In(FieldReference fieldRef, IEnumerable<Value> values)
+        public static Operator In(FieldReference fieldRef, IEnumerable<Value> values)
         {
-            return new InComparisonOperator(fieldRef, values);
+            return new InOperator(fieldRef, values);
         }
     }
 }

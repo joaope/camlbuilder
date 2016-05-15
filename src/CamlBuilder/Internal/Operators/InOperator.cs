@@ -3,14 +3,14 @@ namespace CamlBuilder.Internal.Operators
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class InComparisonOperator : ComparisonOperator
+    internal class InOperator : Operator
     {
         public Value[] Values { get; }
 
-        internal InComparisonOperator(
+        internal InOperator(
             FieldReference fieldRef,
             IEnumerable<Value> values)
-            : base(ComparisonOperatorType.In, fieldRef)
+            : base(CamlBuilder.OperatorType.In, fieldRef)
         {
             Values = values.ToArray();
         }
