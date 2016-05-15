@@ -69,20 +69,20 @@
         {
             if (statementsQueue.Count == 2)
             {
-                return string.Format(@"
-<{0}>
-    {1}
-    {2}
-</{0}>
-", logicalJoinTypeString, statementsQueue.Dequeue().GetCaml(), statementsQueue.Dequeue().GetCaml());
+                return $@"
+<{logicalJoinTypeString}>
+    {statementsQueue.Dequeue().GetCaml()}
+    {statementsQueue.Dequeue().GetCaml()}
+</{logicalJoinTypeString}>
+";
             }
 
-            return string.Format(@"
-<{0}>
-    {1}
-    {2}
-</{0}>
-", logicalJoinTypeString, statementsQueue.Dequeue().GetCaml(), BuildCamlRecursively(statementsQueue));
+            return $@"
+<{logicalJoinTypeString}>
+    {statementsQueue.Dequeue().GetCaml()}
+    {BuildCamlRecursively(statementsQueue)}
+</{logicalJoinTypeString}>
+";
         }
 
         /// <summary>
