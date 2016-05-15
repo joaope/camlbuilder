@@ -55,6 +55,7 @@
                 case OperatorType.DateRangesOverlap:
                 case OperatorType.Includes:
                 case OperatorType.NotIncludes:
+                case OperatorType.In:
                     OperatorTypeString = operatorType.ToString();
                     break;
                 default:

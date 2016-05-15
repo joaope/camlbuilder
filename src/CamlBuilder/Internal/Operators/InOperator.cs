@@ -10,7 +10,7 @@ namespace CamlBuilder.Internal.Operators
         internal InOperator(
             FieldReference fieldRef,
             IEnumerable<Value> values)
-            : base(CamlBuilder.OperatorType.In, fieldRef)
+            : base(OperatorType.In, fieldRef)
         {
             Values = values.ToArray();
         }
@@ -18,11 +18,11 @@ namespace CamlBuilder.Internal.Operators
         public override string GetCaml()
         {
             return $@"
-<In>
+<{OperatorTypeString}>
     <Values>
         {string.Join("\n", Values.Select(v => v.GetCaml()))}
     </Values>
-</In>
+</{OperatorTypeString}>
 ";
         }
     }
