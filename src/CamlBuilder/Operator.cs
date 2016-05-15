@@ -56,6 +56,7 @@
                 case OperatorType.Includes:
                 case OperatorType.NotIncludes:
                 case OperatorType.In:
+                case OperatorType.Membership:
                     OperatorTypeString = operatorType.ToString();
                     break;
                 default:
@@ -345,6 +346,17 @@
         public static Operator In(FieldReference fieldRef, IEnumerable<Value> values)
         {
             return new InOperator(fieldRef, values);
+        }
+
+        /// <summary>
+        /// Instanciates a new <i>Membership</i> operator which will perform on specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field to operate on.</param>
+        /// <param name="membershipType">Type of membership for the operator to use to filter for.</param>
+        /// <returns>Membership operator instance.</returns>
+        public static Operator Membership(FieldReference fieldRef, MembershipType membershipType)
+        {
+            return new MembershipOperator(fieldRef, membershipType);
         }
     }
 }

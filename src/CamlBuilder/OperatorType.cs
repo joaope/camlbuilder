@@ -73,6 +73,11 @@
         /// <summary>
         /// Indicates an In operator
         /// </summary>
-        In
+        In,
+
+        /// <summary>
+        /// Indicates a Membership operator
+        /// </summary>
+        Membership
     }
 }
