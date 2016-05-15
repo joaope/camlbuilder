@@ -37,11 +37,17 @@
         }
 
         /// <summary>
-        /// Returns query's CAML string representation surrounded by Query element
+        /// Returns query's CAML string representation
         /// </summary>
-        /// <returns>Query CAML string surrounded by Query element.</returns>
-        public string GetCaml()
+        /// <param name="whereClauseOnly">true to return only query's Where; otherwise false</param>
+        /// <returns>Query CAML string surrounded by Query element or only the Where clause</returns>
+        public string GetCaml(bool whereClauseOnly)
         {
+            if (whereClauseOnly)
+            {
+                return GetWhereCaml();
+            }
+
             return $@"
 <Query>
     {GetWhereCaml()}
@@ -49,6 +55,15 @@
     {GetOrderByCaml()}
 </Query>
 ";
+        }
+
+        /// <summary>
+        /// Returns query's CAML string representation surrounded by Query element
+        /// </summary>
+        /// <returns>Query CAML string surrounded by Query element.</returns>
+        public string GetCaml()
+        {
+            return GetCaml(false);
         }
 
         /// <summary>
