@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
     using Internal.Operators;
 
     /// <summary>
@@ -64,6 +65,18 @@
             }
         }
 
+        private static string GetPropertyFieldNameOrThrow<T, TProperty>(Expression<Func<T, TProperty>> expression)
+        {
+            var body = expression.Body;
+
+            if (body.NodeType == ExpressionType.MemberAccess)
+            {
+                return ((MemberExpression) body).Member.Name;
+            }
+
+            throw new InvalidOperationException();           
+        }
+
         /// <summary>
         /// Instanciates a new <i>IsNull</i> operator to perform on specified <paramref name="fieldRef"/>.
         /// </summary>
@@ -75,6 +88,18 @@
         }
 
         /// <summary>
+        /// Instanciates a new <i>IsNull</i> operator to perform on specified <paramref name="fieldRefProperty"/>.
+        /// </summary>
+        /// <param name="fieldRefProperty">
+        /// Reference to the field to operate on. Name inferred from the specified field/property name.
+        /// </param>
+        /// <returns>IsNull operator instance.</returns>
+        public static Operator IsNull<T, TProperty>(Expression<Func<T, TProperty>> fieldRefProperty)
+        {
+            return new SimpleOperator(OperatorType.IsNull, GetPropertyFieldNameOrThrow(fieldRefProperty));
+        }
+        
+        /// <summary>
         /// Instanciates a new <i>IsNotNull</i> operator to perform on specified <paramref name="fieldRef"/>.
         /// </summary>
         /// <param name="fieldRef">Reference to the field to operate on.</param>
@@ -82,6 +107,18 @@
         public static Operator IsNotNull(FieldReference fieldRef)
         {
             return new SimpleOperator(OperatorType.IsNotNull, fieldRef);
+        }
+
+        /// <summary>
+        /// Instanciates a new <i>IsNotNull</i> operator to perform on specified <paramref name="fieldRefProperty"/>.
+        /// </summary>
+        /// <param name="fieldRefProperty">
+        /// Reference to the field to operate on. Name inferred from the specified field/property name.
+        /// </param>
+        /// <returns>IsNotNull operator instance.</returns>
+        public static Operator IsNotNull<T, TProperty>(Expression<Func<T, TProperty>> fieldRefProperty)
+        {
+            return new SimpleOperator(OperatorType.IsNotNull, GetPropertyFieldNameOrThrow(fieldRefProperty));
         }
 
         /// <summary>
