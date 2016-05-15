@@ -4,11 +4,15 @@
     using System.Text;
     using Internal.Values;
 
+    /// <summary>
+    /// Defines a CAML value. This class has no constructors available.To instanciate a
+    /// new value use public static methods.
+    /// </summary>
     public abstract class Value
     {
-        private readonly ValueType type;
+        public ValueType Type { get; }
 
-        private readonly bool? includeTimeValue;
+        private bool? IncludeTimeValue { get; }
 
         protected internal Value(ValueType type)
             : this(type, null)
@@ -17,17 +21,17 @@
 
         protected internal Value(ValueType type, bool? includeTimeValue)
         {
-            this.type = type;
-            this.includeTimeValue = includeTimeValue;
+            Type = type;
+            IncludeTimeValue = includeTimeValue;
         }
 
         internal string GetCaml()
         {
             var sb = new StringBuilder();
 
-            if (includeTimeValue.HasValue)
+            if (IncludeTimeValue.HasValue)
             {
-                sb.AppendLine($"<Value Type='{type}' IncludeTimeValue='{(includeTimeValue.Value ? "TRUE" : "FALSE")}'>");
+                sb.AppendLine($"<Value Type='{Type}' IncludeTimeValue='{(IncludeTimeValue.Value ? "TRUE" : "FALSE")}'>");
             }
 
             sb.AppendLine(GetCamlValue());
