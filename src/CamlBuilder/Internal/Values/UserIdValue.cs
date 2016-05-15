@@ -2,8 +2,8 @@
 {
     internal class UserIdValue : Value
     {
-        public UserIdValue(ValueType type, bool? includeTimeValue)
-            : base(type, includeTimeValue)
+        public UserIdValue()
+            : base(ValueType.Integer)
         {
         }
 

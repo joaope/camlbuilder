@@ -88,6 +88,11 @@
             return new AnyValue(type, includeTimeValue, value);
         }
 
+        public static Value UserId()
+        {
+            return new UserIdValue();
+        }
+
         public static Value ListProperties(
             ValueType type, 
             IEnumerable<ListPropertyValueItem> listProperties)
