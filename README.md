@@ -65,5 +65,3 @@ var queryCaml =
    </OrderBy>
 </Query>
 ```
-
-[![Analytics](https://ga-beacon.appspot.com/UA-55655362-2/joaope/camlbuilder/readme.md)](https://github.com/joaope/camlbuilder)
