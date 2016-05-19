@@ -2,7 +2,7 @@
 Small and simple API which allows you to easily write CAML queries, in a declarative way.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1a5mcdp2ysrjor42/branch/master?svg=true)](https://ci.appveyor.com/project/joaope/camlbuilder/branch/master)
-[![NuGet](https://img.shields.io/nuget/v/CamlBuilder.svg?maxAge=2592000)]()
+[![NuGet](https://img.shields.io/nuget/v/CamlBuilder.svg?maxAge=2592000)](https://www.nuget.org/packages/CamlBuilder)
 
 ## Example:
 
