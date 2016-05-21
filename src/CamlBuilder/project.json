@@ -14,9 +14,13 @@
             "url": "https://github.com/joaope/CamlBuilder.git"
         }
     },
-    
+
     "buildOptions": {
         "keyFile": "../../security/CamlBuilder.snk"
+    },
+
+    "dependencies": {
+        "NETStandard.Library": "1.5.0-rc2-24027"
     },
 
     "configurations": {
@@ -34,11 +38,11 @@
     },
 
     "frameworks": {
-        "net451": { },
-        "dotnet5.4": {
+        "netstandard1.3": {
             "dependencies": {
-                "System.Linq": "4.0.0"
-            }
+                "System.Linq": "4.1.0-rc2-24027"
+            },
+            "imports": [ "dnxcore50", "portable-net45+win8" ]
         }
     }
 }
