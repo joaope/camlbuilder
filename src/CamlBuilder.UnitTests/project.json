@@ -1,37 +1,37 @@
 {
-  "compilationOptions": {
-    "keyFile": "../../security/CamlBuilder.snk"
-  },
-
-  "configurations": {
-    "Debug": {
-      "compilationOptions": {
-        "define": [ "DEBUG", "TRACE" ]
-      }
+    "compilationOptions": {
+        "keyFile": "../../security/CamlBuilder.snk"
     },
-    "Release": {
-      "compilationOptions": {
-        "define": [ "RELEASE", "TRACE" ],
-        "optimize": true
-      }
+
+    "configurations": {
+        "Debug": {
+            "compilationOptions": {
+                "define": [ "DEBUG", "TRACE" ]
+            }
+        },
+        "Release": {
+            "compilationOptions": {
+                "define": [ "RELEASE", "TRACE" ],
+                "optimize": true
+            }
+        }
+    },
+
+    "commands": {
+        "run-tests": "xunit.runner.dnx" 
+    },
+
+    "dependencies": {
+        "CamlBuilder": "",
+        "xunit": "2.1.0",
+        "xunit.runner.dnx": "2.1.0-rc1-build204"
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "System.Runtime":  "" 
+            }
+        }
     }
-  },
-
-  "commands": {
-    "run-tests": "xunit.runner.dnx" 
-  },
-
-  "dependencies": {
-    "CamlBuilder": "",
-    "xunit": "2.1.0",
-    "xunit.runner.dnx": "2.1.0-rc1-build204"
-  },
-
-  "frameworks": {
-    "dnx451": {
-      "frameworkAssemblies": {
-        "System.Runtime":  "" 
-      }
-    }
-  }
 }
