@@ -1,36 +1,29 @@
 {
     "version": "1.0.0-beta4",
     "authors": [ "Joao Correia" ],
-    "packOptions": {
-        "owners": [ "Joao Correia" ],
-        "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
-        "projectUrl": "https://github.com/joaope/camlbuilder",
-        "summary": "Small and simple API which allows you to easily write CAML queries, in a declarative way.",
-        "description": "CAMLBuilder allows developers to easily write CAML queries without long strings of XML. CAML can be constructed with declarative strongly-typed code.",
-        "tags": [ "caml", "declarative", "strongly-typed", "sharepoint", "query", "api" ],
-        "requireLicenseAcceptance": false,
-        "repository": {
-            "type": "git",
-            "url": "https://github.com/joaope/CamlBuilder.git"
-        }
+    "owners": [ "Joao Correia" ],
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "projectUrl": "https://github.com/joaope/camlbuilder",
+    "summary": "Small and simple API which allows you to easily write CAML queries, in a declarative way.",
+    "description": "CAMLBuilder allows developers to easily write CAML queries without long strings of XML. CAML can be constructed with declarative strongly-typed code.",
+    "tags": [ "caml", "declarative", "strongly-typed", "sharepoint", "query", "api" ],
+    "requireLicenseAcceptance": false,
+    "repository": {
+        "url": "https://github.com/joaope/CamlBuilder.git"
     },
 
-    "buildOptions": {
+    "compilationOptions": {
         "keyFile": "../../security/CamlBuilder.snk"
-    },
-
-    "dependencies": {
-        "NETStandard.Library": "1.5.0-rc2-24027"
     },
 
     "configurations": {
         "Debug": {
-            "buildOptions": {
+            "compilationOptions": {
                 "define": [ "DEBUG", "TRACE" ]
             }
         },
         "Release": {
-            "buildOptions": {
+            "compilationOptions": {
                 "define": [ "RELEASE", "TRACE" ],
                 "optimize": true
             }
@@ -38,11 +31,11 @@
     },
 
     "frameworks": {
-        "netstandard1.3": {
+        "net451": { },
+        "dotnet5.4": {
             "dependencies": {
-                "System.Linq": "4.1.0-rc2-24027"
-            },
-            "imports": [ "dnxcore50", "portable-net45+win8" ]
+                "System.Linq": "4.0.0"
+            }
         }
     }
 }
