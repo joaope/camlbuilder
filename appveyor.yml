@@ -12,8 +12,8 @@ configuration:
 
 
 build_script:
-  - dotnet pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
-  - dotnet build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
+  - dotnet pack src\CamlBuilder\project.json --configuration %configuration% --output out_bin
+  - dotnet build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --output out_tests
 
 
 test_script:
