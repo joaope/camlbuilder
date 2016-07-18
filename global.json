@@ -2,8 +2,5 @@
     "projects": [
         "src/CamlBuilder/project.json",
         "src/CamlBuilder.UnitTests/project.json"
-    ],
-    "sdk": {
-        "version": "1.0.0-rc1-update1"
-    }
+    ]
 }

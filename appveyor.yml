@@ -3,7 +3,7 @@ init:
 
 
 before_build:
-  - dnu restore
+  - dotnet restore
 
 
 configuration:
@@ -12,12 +12,12 @@ configuration:
 
 
 build_script:
-  - dnu pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
-  - dnu build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
+  - dotnet pack src\CamlBuilder\project.json --configuration %configuration% --out out_bin
+  - dotnet build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --out out_tests
 
 
 test_script:
-  - dnx --project src\CamlBuilder.UnitTests\project.json run-tests
+  - dotnet test src\CamlBuilder.UnitTests\project.json
 
 
 artifacts:
