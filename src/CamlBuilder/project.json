@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0-beta5",
+    "version": "1.0.0",
     "authors": [ "Joao Correia" ],
     "title": "CamlBuilder",
     "description": "CamlBuilder allows developers to easily write CAML queries without long strings of XML. CAML can be constructed with declarative strongly-typed code.",

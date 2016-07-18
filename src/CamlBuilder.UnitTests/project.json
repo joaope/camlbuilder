@@ -2,7 +2,7 @@
     "testRunner": "xunit",
 
     "dependencies": {
-        "CamlBuilder": "1.0.0-beta5",
+        "CamlBuilder": "1.0.0",
         "xunit": "2.2.0-beta2-build3300",
         "dotnet-test-xunit": "2.2.0-preview2-build1029",
         "System.Xml.XmlDocument": "4.0.1",
