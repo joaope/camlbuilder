@@ -13,9 +13,9 @@
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(op.GetCaml());
 
-            Assert.Equal(xmlDoc.FirstChild.Name, "IsNull");
-            Assert.Equal(xmlDoc.ChildNodes.Count, 1);
-            Assert.Equal(xmlDoc.ChildNodes[0].ChildNodes.Count, 1);
+            Assert.Equal("IsNull", xmlDoc.FirstChild.Name);
+            Assert.Equal(1, xmlDoc.ChildNodes.Count);
+            Assert.Equal(1, xmlDoc.ChildNodes[0].ChildNodes.Count);
             Assert.True(xmlDoc.SelectSingleNode("/IsNull/FieldRef[@Name='testField']") != null);
         }
 
@@ -27,9 +27,9 @@
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(op.GetCaml());
 
-            Assert.Equal(xmlDoc.FirstChild.Name, "IsNotNull");
-            Assert.Equal(xmlDoc.ChildNodes.Count, 1);
-            Assert.Equal(xmlDoc.ChildNodes[0].ChildNodes.Count, 1);
+            Assert.Equal("IsNotNull", xmlDoc.FirstChild.Name);
+            Assert.Equal(1, xmlDoc.ChildNodes.Count);
+            Assert.Equal(1, xmlDoc.ChildNodes[0].ChildNodes.Count);
             Assert.True(xmlDoc.SelectSingleNode("/IsNotNull/FieldRef[@Name='testField']") != null);
         }
     }

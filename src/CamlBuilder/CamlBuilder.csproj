@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>CamlBuilder allows developers to easily write CAML queries without long strings of XML. CAML can be constructed with declarative strongly-typed code.</Description>
+    <Copyright>joaope 2018</Copyright>
+    <AssemblyTitle>CamlBuilder</AssemblyTitle>
+    <VersionPrefix>1.1.0</VersionPrefix>
+    <Authors>joaope</Authors>
+    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PlatformTarget>anycpu</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <DebugType>portable</DebugType>
+    <AssemblyName>CamlBuilder</AssemblyName>
+    <PackageId>CamlBuilder</PackageId>
+    <PackageTags>caml;declarative;strongly-typed;sharepoint;query;api"</PackageTags>
+    <PackageProjectUrl>https://github.com/joaope/camlbuilder</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/joaope/camlbuilder/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/joaope/camlbuilder.git</RepositoryUrl>
+    <AssemblyOriginatorKeyFile>../../security/CamlBuilder.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign>true</PublicSign>
+  </PropertyGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+
+</Project>

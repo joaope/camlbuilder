@@ -1,9 +1,6 @@
 init:
+  - dotnet --info
   - git config --global core.autocrlf true
-
-
-before_build:
-  - dotnet restore
 
 
 configuration:
@@ -12,12 +9,12 @@ configuration:
 
 
 build_script:
-  - dotnet pack src\CamlBuilder\project.json --configuration %configuration% --output out_bin
-  - dotnet build src\CamlBuilder.UnitTests\project.json --configuration %configuration% --output out_tests --framework netcoreapp1.0
+  - dotnet pack src\CamlBuilder\CamlBuilder.json --configuration %configuration% --output out_bin
+  - dotnet build tests\CamlBuilder.UnitTests\CamlBuilder.UnitTests.csproj --configuration %configuration% --output out_tests
 
 
 test_script:
-  - dotnet test src\CamlBuilder.UnitTests\project.json
+  - dotnet test tests\CamlBuilder.UnitTests\CamlBuilder.UnitTests.csproj
 
 
 artifacts:
@@ -28,7 +25,7 @@ artifacts:
 deploy:
   - provider: NuGet
     api_key: 
-      secure: sQplMyrjV8N58rccFtWBFZcsjJy6iHKKP9DbSxRAds10jrfshfM+JorTBMyN8wOs
+      secure: Q/dky+nYmx9bk3vd0qrvoFbPB6XN8wIenzVwmO1SDw3b8RphWExzhuoK6eLXUgaQ
     on:
       branch: master
       appveyor_repo_tag: true
