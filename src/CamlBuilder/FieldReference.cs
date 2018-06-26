@@ -206,7 +206,7 @@
                 values.Add(new KeyValuePair<string, string>("TextOnly", TextOnly.Value.ToString().ToUpperInvariant()));
             }
 
-            return $"<FieldRef {string.Join("", values.Select(kv => $"{kv.Key}='{kv.Value}'"))}/>";
+            return $"<FieldRef {string.Join(" ", values.Select(kv => $"{kv.Key}='{kv.Value}'"))}/>";
         }
 
         private string GetTypeString(FieldReferenceFunctionType type)
