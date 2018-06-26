@@ -13,7 +13,7 @@
     <DebugType>portable</DebugType>
     <AssemblyName>CamlBuilder</AssemblyName>
     <PackageId>CamlBuilder</PackageId>
-    <PackageTags>caml;declarative;strongly-typed;sharepoint;query;api"</PackageTags>
+    <PackageTags>caml;declarative;strongly-typed;sharepoint;query;api</PackageTags>
     <PackageProjectUrl>https://github.com/joaope/camlbuilder</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/joaope/camlbuilder/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
