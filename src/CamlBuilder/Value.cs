@@ -36,14 +36,9 @@
         {
             var sb = new StringBuilder();
 
-            if (IncludeTimeValue.HasValue)
-            {
-                sb.AppendLine($"<Value Type='{Type}' IncludeTimeValue='{(IncludeTimeValue.Value ? "TRUE" : "FALSE")}'>");
-            }
-            else
-            {
-                sb.AppendLine($"<Value Type='{Type}'>");
-            }
+            sb.AppendLine(IncludeTimeValue.HasValue
+                ? $"<Value Type='{Type}' IncludeTimeValue='{(IncludeTimeValue.Value ? "TRUE" : "FALSE")}'>"
+                : $"<Value Type='{Type}'>");
 
             sb.AppendLine(GetCamlValue());
             sb.AppendLine("</Value>");
