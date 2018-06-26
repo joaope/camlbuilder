@@ -40,6 +40,10 @@
             {
                 sb.AppendLine($"<Value Type='{Type}' IncludeTimeValue='{(IncludeTimeValue.Value ? "TRUE" : "FALSE")}'>");
             }
+            else
+            {
+                sb.AppendLine($"<Value Type='{Type}'>");
+            }
 
             sb.AppendLine(GetCamlValue());
             sb.AppendLine("</Value>");
