@@ -1,8 +1,16 @@
-﻿namespace CamlBuilder
-{
-    using System.Collections.Generic;
-    using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("CamlBuilder.UnitTests,PublicKey=" +
+                              "0024000004800000940000000602000000240000525341310004000001000100f397ec93541" +
+                              "8436bd669a4d7c6e762f504c023c12c48ca07902c50dfcdce120ef03bf370f117b04af03e87" +
+                              "6ba0cfbe2dace8d634b16dc3994aa693ef4df639a2cd75b88971fb4a2b88cd60a9cb797e1a3" +
+                              "dfafb68d06e0f0b3243169bba8704c2ff1e74cb8ea030a4b3a530fda7cec112725ab9916fc9" +
+                              "c56247caf3e9058669e6")]
+
+namespace CamlBuilder
+{
     /// <summary>
     /// Class which represents a CAML query.
     /// </summary>
