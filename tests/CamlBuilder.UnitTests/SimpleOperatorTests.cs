@@ -1,17 +1,16 @@
-﻿namespace CamlBuilder.UnitTests
-{
-    using Xunit;
-    using System.Xml;
+﻿using Xunit;
+using System.Xml;
 
-    public class SimpleOperatorTests
+namespace CamlBuilder.UnitTests
+{
+    public class SimpleOperatorTests : XmlTester
     {
         [Fact]
         public void VerifySimpleOperatorIsNullformat()
         {
             var op = Operator.IsNull("testField");
 
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(op.GetCaml());
+            var xmlDoc = GetXmlDocument(op.GetCaml());
 
             Assert.Equal("IsNull", xmlDoc.FirstChild.Name);
             Assert.Equal(1, xmlDoc.ChildNodes.Count);
@@ -24,8 +23,7 @@
         {
             var op = Operator.IsNotNull("testField");
 
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(op.GetCaml());
+            var xmlDoc = GetXmlDocument(op.GetCaml());
 
             Assert.Equal("IsNotNull", xmlDoc.FirstChild.Name);
             Assert.Equal(1, xmlDoc.ChildNodes.Count);

@@ -1,22 +1,7 @@
-﻿using System.Xml;
-using Xunit;
+﻿using Xunit;
 
 namespace CamlBuilder.UnitTests
 {
-    public abstract class XmlTester
-    {
-        protected XmlDocument GetXmlDocument(string xml)
-        {
-            var xmlDoc = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
-            xmlDoc.LoadXml(xml);
-
-            return xmlDoc;
-        }
-    }
-
     public sealed class ValueTests : XmlTester
     {
         [Theory]
@@ -41,7 +26,7 @@ test
         {
             var value = Value.ObjectValue(ValueType.Text, null, textValue);
 
-            var xmlDoc = GetXmlDocument(value.GetCaml());
+            var xmlDoc = GetXmlDocument(value.GetCaml(), true);
 
             Assert.Equal("Value", xmlDoc.FirstChild.Name);
             Assert.Equal(expectedValue, xmlDoc.FirstChild.InnerText);
@@ -52,7 +37,7 @@ test
         {
             var nowValue = Value.Now();
 
-            var xmlDoc = GetXmlDocument(nowValue.GetCaml());
+            var xmlDoc = GetXmlDocument(nowValue.GetCaml(), true);
 
             Assert.Equal("Value", xmlDoc.FirstChild.Name);
             Assert.Equal(string.Empty, xmlDoc.FirstChild.InnerText);
