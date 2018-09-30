@@ -21,6 +21,7 @@
     <AssemblyOriginatorKeyFile>../../security/CamlBuilder.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign>true</PublicSign>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
 </Project>
