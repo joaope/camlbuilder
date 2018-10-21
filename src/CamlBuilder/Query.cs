@@ -22,9 +22,9 @@ namespace CamlBuilder
     /// </summary>
     public class Query
     {
-        private readonly List<FieldReference> orderByFields = new List<FieldReference>();
+        private readonly List<FieldReference> _orderByFields = new List<FieldReference>();
 
-        private readonly List<FieldReference> groupByFields = new List<FieldReference>();
+        private readonly List<FieldReference> _groupByFields = new List<FieldReference>();
 
         /// <summary>
         /// Gets the statement holded by this query.
@@ -84,7 +84,7 @@ namespace CamlBuilder
         /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
         public Query OrderBy(FieldReference fieldRef)
         {
-            orderByFields.Add(fieldRef);
+            _orderByFields.Add(fieldRef);
             return this;
         }
 
@@ -107,7 +107,7 @@ namespace CamlBuilder
         /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
         public Query OrderBy(IEnumerable<FieldReference> fieldRefs)
         {
-            orderByFields.AddRange(fieldRefs);
+            _orderByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -118,7 +118,7 @@ namespace CamlBuilder
         /// <returns>Returns the query itself.</returns>
         public Query GroupBy(FieldReference fieldRef)
         {
-            groupByFields.Add(fieldRef);
+            _groupByFields.Add(fieldRef);
             return this;
         }
 
@@ -139,7 +139,7 @@ namespace CamlBuilder
         /// <returns>Returns the query itself.</returns>
         public Query GroupBy(IEnumerable<FieldReference> fieldRefs)
         {
-            groupByFields.AddRange(fieldRefs);
+            _groupByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -159,13 +159,13 @@ namespace CamlBuilder
 
         private string GetOrderByCaml()
         {
-            if (orderByFields.Count == 0)
+            if (_orderByFields.Count == 0)
             {
                 return string.Empty;
             }
 
             var sb = new StringBuilder();
-            orderByFields.ForEach(o => sb.AppendLine(o.GetCaml()));
+            _orderByFields.ForEach(o => sb.AppendLine(o.GetCaml()));
 
             return $@"
 <OrderBy>
@@ -176,13 +176,13 @@ namespace CamlBuilder
 
         private string GetGroupByCaml()
         {
-            if (groupByFields.Count == 0)
+            if (_groupByFields.Count == 0)
             {
                 return string.Empty;
             }
 
             var sb = new StringBuilder();
-            groupByFields.ForEach(g => sb.AppendLine(g.GetCaml()));
+            _groupByFields.ForEach(g => sb.AppendLine(g.GetCaml()));
 
             return $@"
 <GroupBy>

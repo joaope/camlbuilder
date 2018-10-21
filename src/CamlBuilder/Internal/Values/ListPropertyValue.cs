@@ -5,7 +5,7 @@
 
     internal class ListPropertyValue : Value
     {
-        private readonly ListPropertyValueItem[] items;
+        private readonly ListPropertyValueItem[] _items;
 
         public ListPropertyValue(
             ValueType type, 
@@ -13,12 +13,12 @@
             IEnumerable<ListPropertyValueItem> items)
             : base(type, includeTimeValue)
         {
-            this.items = items.ToArray();
+            this._items = items.ToArray();
         }
 
         protected override string GetCamlValue()
         {
-            return string.Join("\n", items.Select(GetItemElement));
+            return string.Join("\n", _items.Select(GetItemElement));
         }
 
         private string GetItemElement(ListPropertyValueItem item)
