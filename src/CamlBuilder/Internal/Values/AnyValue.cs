@@ -2,17 +2,17 @@ namespace CamlBuilder.Internal.Values
 {
     internal class AnyValue : Value
     {
-        private readonly object anyValue;
+        private readonly object _anyValue;
 
         public AnyValue(ValueType type, bool? includeTimeValue, object anyValue)
             : base(type, includeTimeValue)
         {
-            this.anyValue = anyValue;
+            this._anyValue = anyValue;
         }
 
         protected override string GetCamlValue()
         {
-            return anyValue.ToString();
+            return _anyValue.ToString();
         }
     }
 }

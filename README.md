@@ -22,6 +22,25 @@ var queryCaml =
         .OrderBy(new FieldReference("Age") { Ascending = false })
         .GroupBy("Address")
         .GetCaml();
+
+// or the strongly-typed equivalent
+
+var and =
+    LogicalJoin.And(
+        Operator.Contains<MyClass, string>(m => m.HairColors, ValueType.Text, "brown"),
+        Operator.BeginsWith<MyClass, string>(m => m.Name, ValueType.Text, "John"),
+        Operator.GreaterThanOrEqualTo<MyClass, int>(m => m.Age, ValueType.Integer, 21),
+        LogicalJoin.Or(
+            Operator.IsNotNull<MyClass, double>(m => m.Counter),
+            Operator.IsNull<MyClass, bool>(m => m.Flag)));
+
+var queryCaml =
+    Query.Build(and)
+        .OrderBy<MyClass, string>(m => m.Country)
+        .OrderBy(new FieldReference<MyClass, int>(m => m.Age) { Ascending = false })
+        .GroupBy<MyClass, string>(m => m.Address)
+        .GetCaml();
+
 ```
 
 ## Output:

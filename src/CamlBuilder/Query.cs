@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Runtime.CompilerServices;
 
@@ -20,9 +22,9 @@ namespace CamlBuilder
     /// </summary>
     public class Query
     {
-        private readonly List<FieldReference> orderByFields = new List<FieldReference>();
+        private readonly List<FieldReference> _orderByFields = new List<FieldReference>();
 
-        private readonly List<FieldReference> groupByFields = new List<FieldReference>();
+        private readonly List<FieldReference> _groupByFields = new List<FieldReference>();
 
         /// <summary>
         /// Gets the statement holded by this query.
@@ -82,8 +84,19 @@ namespace CamlBuilder
         /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
         public Query OrderBy(FieldReference fieldRef)
         {
-            orderByFields.Add(fieldRef);
+            _orderByFields.Add(fieldRef);
             return this;
+        }
+
+        /// <summary>
+        /// Adds a new query sort order relatively to a specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field where to perform the ordering on.</param>
+        /// <returns>Returns the query itself.</returns>
+        /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
+        public Query OrderBy<T, TProperty>(Expression<Func<T, TProperty>> fieldRef)
+        {
+            return OrderBy((FieldReference<T, TProperty>) fieldRef);
         }
 
         /// <summary>
@@ -94,7 +107,7 @@ namespace CamlBuilder
         /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
         public Query OrderBy(IEnumerable<FieldReference> fieldRefs)
         {
-            orderByFields.AddRange(fieldRefs);
+            _orderByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -105,8 +118,18 @@ namespace CamlBuilder
         /// <returns>Returns the query itself.</returns>
         public Query GroupBy(FieldReference fieldRef)
         {
-            groupByFields.Add(fieldRef);
+            _groupByFields.Add(fieldRef);
             return this;
+        }
+
+        /// <summary>
+        /// Specify the query's group-by options. Query will be grouped by specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field to group by.</param>
+        /// <returns>Returns the query itself.</returns>
+        public Query GroupBy<T, TProperty>(Expression<Func<T, TProperty>> fieldRef)
+        {
+            return GroupBy((FieldReference<T, TProperty>) fieldRef);
         }
 
         /// <summary>
@@ -116,7 +139,7 @@ namespace CamlBuilder
         /// <returns>Returns the query itself.</returns>
         public Query GroupBy(IEnumerable<FieldReference> fieldRefs)
         {
-            groupByFields.AddRange(fieldRefs);
+            _groupByFields.AddRange(fieldRefs);
             return this;
         }
 
@@ -136,13 +159,13 @@ namespace CamlBuilder
 
         private string GetOrderByCaml()
         {
-            if (orderByFields.Count == 0)
+            if (_orderByFields.Count == 0)
             {
                 return string.Empty;
             }
 
             var sb = new StringBuilder();
-            orderByFields.ForEach(o => sb.AppendLine(o.GetCaml()));
+            _orderByFields.ForEach(o => sb.AppendLine(o.GetCaml()));
 
             return $@"
 <OrderBy>
@@ -153,13 +176,13 @@ namespace CamlBuilder
 
         private string GetGroupByCaml()
         {
-            if (groupByFields.Count == 0)
+            if (_groupByFields.Count == 0)
             {
                 return string.Empty;
             }
 
             var sb = new StringBuilder();
-            groupByFields.ForEach(g => sb.AppendLine(g.GetCaml()));
+            _groupByFields.ForEach(g => sb.AppendLine(g.GetCaml()));
 
             return $@"
 <GroupBy>

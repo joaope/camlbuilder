@@ -14,15 +14,15 @@
         /// </summary>
         public LogicalJoinType LogicalJoinType { get; }
 
-        private readonly List<Statement> internalStatements;
+        private readonly List<Statement> _internalStatements;
 
-        private readonly string logicalJoinTypeString;
+        private readonly string _logicalJoinTypeString;
 
         private LogicalJoin(LogicalJoinType logicalJoinType, IEnumerable<Statement> statements)
         {
             LogicalJoinType = logicalJoinType;
-            logicalJoinTypeString = logicalJoinType.ToString();
-            internalStatements = statements.ToList();
+            _logicalJoinTypeString = logicalJoinType.ToString();
+            _internalStatements = statements.ToList();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// <param name="statement">Statement to be added.</param>
         public void AddStatement(Statement statement)
         {
-            internalStatements.Add(statement);
+            _internalStatements.Add(statement);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@
         /// <param name="statements">Statements to be added to logical join.</param>
         public void AddStatements(IEnumerable<Statement> statements)
         {
-            internalStatements.AddRange(statements);
+            _internalStatements.AddRange(statements);
         }
 
         /// <summary>
@@ -50,17 +50,17 @@
         /// <returns>CAML string.</returns>
         public override string GetCaml()
         {
-            if (internalStatements.Count == 0)
+            if (_internalStatements.Count == 0)
             {
                 return string.Empty;
             }
 
-            if (internalStatements.Count == 1)
+            if (_internalStatements.Count == 1)
             {
-                return internalStatements[0].GetCaml();
+                return _internalStatements[0].GetCaml();
             }
 
-            var queue = new Queue<Statement>(internalStatements);
+            var queue = new Queue<Statement>(_internalStatements);
 
             return BuildCamlRecursively(queue);
         }
@@ -70,18 +70,18 @@
             if (statementsQueue.Count == 2)
             {
                 return $@"
-<{logicalJoinTypeString}>
+<{_logicalJoinTypeString}>
     {statementsQueue.Dequeue().GetCaml()}
     {statementsQueue.Dequeue().GetCaml()}
-</{logicalJoinTypeString}>
+</{_logicalJoinTypeString}>
 ";
             }
 
             return $@"
-<{logicalJoinTypeString}>
+<{_logicalJoinTypeString}>
     {statementsQueue.Dequeue().GetCaml()}
     {BuildCamlRecursively(statementsQueue)}
-</{logicalJoinTypeString}>
+</{_logicalJoinTypeString}>
 ";
         }
 

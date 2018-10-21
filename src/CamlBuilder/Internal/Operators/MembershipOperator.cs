@@ -4,17 +4,17 @@ namespace CamlBuilder.Internal.Operators
 
     internal class MembershipOperator : Operator
     {
-        private readonly MembershipType membershipType;
+        private readonly MembershipType _membershipType;
 
         public MembershipOperator(FieldReference fieldRef, MembershipType membershipType)
             : base(OperatorType.Membership, fieldRef)
         {
-            this.membershipType = membershipType;
+            this._membershipType = membershipType;
         }
 
         private string GetMembershipTypeString()
         {
-            switch (membershipType)
+            switch (_membershipType)
             {
                 case MembershipType.SpWebAllUsers:
                     return "SPWeb.AllUsers";

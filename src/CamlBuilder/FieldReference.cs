@@ -1,8 +1,56 @@
-﻿namespace CamlBuilder
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+
+namespace CamlBuilder
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    /// <summary>
+    /// Represents a strongly-typed reference to a field within a query.
+    /// </summary>
+    /// <typeparam name="T">Type representing the object being queried</typeparam>
+    /// <typeparam name="TProperty">Type representing the field being queried</typeparam>
+    public class FieldReference<T, TProperty> : FieldReference
+    {
+        /// <summary>
+        /// Creates an instance of FieldReference with the initial specified <param name="name"></param>. 
+        /// </summary>
+        /// <param name="name">Internal name of the field.</param>
+        public FieldReference(string name)
+        {
+            Name = name;
+        }
+
+        /// <summary>
+        /// Creates an instance of FieldReference where the field name is
+        /// infered by the provided <paramref name="expression"/>. 
+        /// </summary>
+        /// <param name="expression">Expression that represents an access to a field or property.</param>
+        /// <exception cref="InvalidOperationException">
+        /// When the field name cannot be infered by the provided expression. Is not a field or Property access expression.
+        /// </exception>
+        public FieldReference(Expression<Func<T, TProperty>> expression)
+            : base(GetFieldNameFromExpression(expression))
+        {
+        }
+
+        private static string GetFieldNameFromExpression(Expression<Func<T, TProperty>> expression)
+        {
+            var body = expression.Body;
+
+            if (body.NodeType == ExpressionType.MemberAccess)
+            {
+                return  ((MemberExpression)body).Member.Name;
+            }
+
+            throw new InvalidOperationException("Field reference expression needs to be a field or property access");
+        }
+
+        public static implicit operator FieldReference<T, TProperty>(Expression<Func<T, TProperty>> expression)
+        {
+            return new FieldReference<T, TProperty>(expression);
+        }
+    }
 
     /// <summary>
     /// Represents a reference to a field within a query.
@@ -125,7 +173,7 @@
         public static implicit operator FieldReference(string fieldName)
         {
             return new FieldReference(fieldName);
-        } 
+        }
 
         internal string GetCaml()
         {
