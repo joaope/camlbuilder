@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyOriginatorKeyFile>../../security/CamlBuilder.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-    <PublicSign>true</PublicSign> 
+    <DelaySign>false</DelaySign> 
   </PropertyGroup>
 
   <ItemGroup>

@@ -20,7 +20,6 @@
     <RepositoryUrl>https://github.com/joaope/camlbuilder.git</RepositoryUrl>
     <AssemblyOriginatorKeyFile>../../security/CamlBuilder.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
-    <PublicSign>true</PublicSign>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
 
