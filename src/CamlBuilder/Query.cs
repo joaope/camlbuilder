@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Runtime.CompilerServices;
 
@@ -87,6 +89,17 @@ namespace CamlBuilder
         }
 
         /// <summary>
+        /// Adds a new query sort order relatively to a specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field where to perform the ordering on.</param>
+        /// <returns>Returns the query itself.</returns>
+        /// <remarks>Use <see cref="FieldReference.Ascending"/> with false value to specify descending order.</remarks>
+        public Query OrderBy<T, TProperty>(Expression<Func<T, TProperty>> fieldRef)
+        {
+            return OrderBy((FieldReference<T, TProperty>) fieldRef);
+        }
+
+        /// <summary>
         /// Adds a collection of sort orders relatively to specified <paramref name="fieldRefs"/>.
         /// </summary>
         /// <param name="fieldRefs">References to the fields where to perform the ordering on.</param>
@@ -107,6 +120,16 @@ namespace CamlBuilder
         {
             groupByFields.Add(fieldRef);
             return this;
+        }
+
+        /// <summary>
+        /// Specify the query's group-by options. Query will be grouped by specified <paramref name="fieldRef"/>.
+        /// </summary>
+        /// <param name="fieldRef">Reference to the field to group by.</param>
+        /// <returns>Returns the query itself.</returns>
+        public Query GroupBy<T, TProperty>(Expression<Func<T, TProperty>> fieldRef)
+        {
+            return GroupBy((FieldReference<T, TProperty>) fieldRef);
         }
 
         /// <summary>
