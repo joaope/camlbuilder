@@ -179,11 +179,38 @@ namespace CamlBuilder
         /// </exception>
         public static string GetName<T, TProperty>(Expression<Func<T, TProperty>> expression)
         {
+            return GetNameFromMemberExpressionOrThrow(expression.Body);
+        }
+
+        /// <summary>
+        /// Gets the field name from a given field or property <paramref name="expression"/>.
+        ///
+        /// Checks if the field or property is annotated with <see cref="FieldReferenceAttribute"/> and it
+        /// returns <see cref="FieldReferenceAttribute.FieldName"/>; otherwise, it uses the field or property name.
+        /// </summary>
+        /// <typeparam name="T">Type representing the object being queried</typeparam>
+        /// <param name="expression">Field or property expression</param>
+        /// <returns>Field name</returns>
+        /// <exception cref="InvalidOperationException">
+        /// When <paramref name="expression"/> does not represent a field or property.
+        /// </exception>
+        public static string GetName<T>(Expression<Func<T, object>> expression)
+        {
             var body = expression.Body;
 
-            if (body.NodeType == ExpressionType.MemberAccess)
+            while (body.NodeType == ExpressionType.Convert)
             {
-                var member = ((MemberExpression)body).Member;
+                body = ((UnaryExpression) body).Operand;
+            }
+
+            return GetNameFromMemberExpressionOrThrow(body);
+        }
+
+        private static string GetNameFromMemberExpressionOrThrow(Expression expression)
+        {
+            if (expression.NodeType == ExpressionType.MemberAccess)
+            {
+                var member = ((MemberExpression)expression).Member;
                 var fieldAttr = member
                     .GetCustomAttributes(typeof(FieldReferenceAttribute))
                     .SingleOrDefault();

@@ -72,10 +72,27 @@ namespace CamlBuilder.UnitTests
         }
 
         [Fact]
+        public void ShouldGetNameFromFieldExpressionWithPreferenceToReadFromAttrribute2()
+        {
+            var name = FieldReference.GetName<TestsDto>(t => t.BooleanProp);
+            var nameFromField = FieldReference.GetName<TestsDto>(t => t.FieldDouble);
+
+            Assert.Equal("CustomNameFromAttribute", name);
+            Assert.Equal("CustomDoubleFieldName", nameFromField);
+        }
+
+        [Fact]
         public void ShouldThrowWhenReadingAnExpressionNotAFieldOrProperty()
         {
             Assert.Throws<InvalidOperationException>(() =>
-                FieldReference.GetName<TestsDto, string>(t => t.ThisIsAMethod()));
+                FieldReference.GetName<TestsDto>(t => t.ThisIsAMethod()));
+        }
+
+        [Fact]
+        public void ShouldThrowWhenReadingAnExpressionNotAFieldOrProperty2()
+        {
+            Assert.Throws<InvalidOperationException>(() =>
+                FieldReference.GetName<TestsDto>(t => t.ThisIsAMethod()));
         }
     }
 }
