@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace CamlBuilder
 {
@@ -30,20 +31,8 @@ namespace CamlBuilder
         /// When the field name cannot be infered by the provided expression. Is not a field or Property access expression.
         /// </exception>
         public FieldReference(Expression<Func<T, TProperty>> expression)
-            : base(GetFieldNameFromExpression(expression))
+            : base(GetName(expression))
         {
-        }
-
-        private static string GetFieldNameFromExpression(Expression<Func<T, TProperty>> expression)
-        {
-            var body = expression.Body;
-
-            if (body.NodeType == ExpressionType.MemberAccess)
-            {
-                return  ((MemberExpression)body).Member.Name;
-            }
-
-            throw new InvalidOperationException("Field reference expression needs to be a field or property access");
         }
 
         public static implicit operator FieldReference<T, TProperty>(Expression<Func<T, TProperty>> expression)
@@ -173,6 +162,38 @@ namespace CamlBuilder
         public static implicit operator FieldReference(string fieldName)
         {
             return new FieldReference(fieldName);
+        }
+
+        /// <summary>
+        /// Gets the field name from a given field or property <paramref name="expression"/>.
+        ///
+        /// Checks if the field or property is annotated with <see cref="FieldReferenceAttribute"/> and it
+        /// returns <see cref="FieldReferenceAttribute.FieldName"/>; otherwise, it uses the field or property name.
+        /// </summary>
+        /// <typeparam name="T">Type representing the object being queried</typeparam>
+        /// <typeparam name="TProperty">Type representing the field being queried</typeparam>
+        /// <param name="expression">Field or property expression</param>
+        /// <returns>Field name</returns>
+        /// <exception cref="InvalidOperationException">
+        /// When <paramref name="expression"/> does not represent a field or property.
+        /// </exception>
+        public static string GetName<T, TProperty>(Expression<Func<T, TProperty>> expression)
+        {
+            var body = expression.Body;
+
+            if (body.NodeType == ExpressionType.MemberAccess)
+            {
+                var member = ((MemberExpression)body).Member;
+                var fieldAttr = member
+                    .GetCustomAttributes(typeof(FieldReferenceAttribute))
+                    .SingleOrDefault();
+
+                return fieldAttr != null
+                    ? ((FieldReferenceAttribute)fieldAttr).FieldName
+                    : member.Name;
+            }
+
+            throw new InvalidOperationException("Field reference expression needs to be a field or property access");
         }
 
         internal string GetCaml()

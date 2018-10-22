@@ -11,6 +11,17 @@ namespace CamlBuilder.UnitTests
             public string PropName { get; set; }
 
             public int PropNameInteger { get; set; }
+
+            [FieldReference("CustomNameFromAttribute")]
+            public bool BooleanProp { get; set; }
+
+            [FieldReference("CustomDoubleFieldName")]
+            public double FieldDouble;
+
+            public string ThisIsAMethod()
+            {
+                return null;
+            }
         }
 
         [Fact]
@@ -32,6 +43,39 @@ namespace CamlBuilder.UnitTests
             
             Assert.Equal("PropName", fieldRef.Name);
             Assert.IsAssignableFrom<FieldReference>(fieldRef);
+        }
+
+        [Fact]
+        public void FieldNameShouldBeInferedFromAttribute()
+        {
+            var fieldRef = new FieldReference<TestsDto, bool>(t => t.BooleanProp);
+
+            Assert.Equal("CustomNameFromAttribute", fieldRef.Name);
+        }
+
+        [Fact]
+        public void ShouldGetNameFromFieldExpression()
+        {
+            var name = FieldReference.GetName<TestsDto, int>(t => t.PropNameInteger);
+
+            Assert.Equal("PropNameInteger", name);
+        }
+
+        [Fact]
+        public void ShouldGetNameFromFieldExpressionWithPreferenceToReadFromAttrribute()
+        {
+            var name = FieldReference.GetName<TestsDto, bool>(t => t.BooleanProp);
+            var nameFromField = FieldReference.GetName<TestsDto, double>(t => t.FieldDouble);
+
+            Assert.Equal("CustomNameFromAttribute", name);
+            Assert.Equal("CustomDoubleFieldName", nameFromField);
+        }
+
+        [Fact]
+        public void ShouldThrowWhenReadingAnExpressionNotAFieldOrProperty()
+        {
+            Assert.Throws<InvalidOperationException>(() =>
+                FieldReference.GetName<TestsDto, string>(t => t.ThisIsAMethod()));
         }
     }
 }
