@@ -6,7 +6,7 @@ Small and simple API which allows you to easily write CAML queries, in a declara
 
 ## Example:
 
-```C#
+```c#
 var and = 
     LogicalJoin.And(
         Operator.Contains("HairColors", ValueType.Text, "brown"),
